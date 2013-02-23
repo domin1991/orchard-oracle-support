@@ -1,0 +1,621 @@
+2013-02-19 14:44:41,843 [30] NHibernate.AdoNet.AbstractBatcher - Could not execute query: select aliasrecor0_.Id as Id751_, aliasrecor0_.Path as Path751_, aliasrecor0_.RouteValues as RouteVal3_751_, aliasrecor0_.Source as Source751_, aliasrecor0_.Action_id as Action5_751_ from Orchard_Alias_AliasRecord aliasrecor0_ order by aliasrecor0_.Id asc
+System.Data.OracleClient.OracleException (0x80131938): ORA-00942: 表或视图不存在
+
+   在 System.Data.OracleClient.OracleConnection.CheckError(OciErrorHandle errorHandle, Int32 rc)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, Boolean needRowid, OciRowidDescriptor& rowidDescriptor, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OracleClient.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+2013-02-19 14:44:41,867 [30] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:44:41,870 [30] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:44:41,873 [30] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:44:41,876 [30] Orchard.Alias.Implementation.Updater.AliasHolderUpdater - Exception during Alias refresh
+NHibernate.Exceptions.GenericADOException: could not execute query
+[ select aliasrecor0_.Id as Id751_, aliasrecor0_.Path as Path751_, aliasrecor0_.RouteValues as RouteVal3_751_, aliasrecor0_.Source as Source751_, aliasrecor0_.Action_id as Action5_751_ from Orchard_Alias_AliasRecord aliasrecor0_ order by aliasrecor0_.Id asc ]
+[SQL: select aliasrecor0_.Id as Id751_, aliasrecor0_.Path as Path751_, aliasrecor0_.RouteValues as RouteVal3_751_, aliasrecor0_.Source as Source751_, aliasrecor0_.Action_id as Action5_751_ from Orchard_Alias_AliasRecord aliasrecor0_ order by aliasrecor0_.Id asc] ---> System.Data.OracleClient.OracleException: ORA-00942: 表或视图不存在
+
+   在 System.Data.OracleClient.OracleConnection.CheckError(OciErrorHandle errorHandle, Int32 rc)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, Boolean needRowid, OciRowidDescriptor& rowidDescriptor, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OracleClient.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   在 NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session)
+   在 NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   在 NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Loader.Loader.ListIgnoreQueryCache(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Loader.Loader.List(ISessionImplementor session, QueryParameters queryParameters, ISet`1 querySpaces, IType[] resultTypes)
+   在 NHibernate.Hql.Ast.ANTLR.Loader.QueryLoader.List(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Hql.Ast.ANTLR.QueryTranslatorImpl.List(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Engine.Query.HQLQueryPlan.PerformList(QueryParameters queryParameters, ISessionImplementor session, IList results)
+   在 NHibernate.Impl.SessionImpl.List(IQueryExpression queryExpression, QueryParameters queryParameters, IList results)
+   在 NHibernate.Impl.AbstractSessionImpl.List(IQueryExpression queryExpression, QueryParameters parameters)
+   在 NHibernate.Impl.ExpressionQueryImpl.List()
+   在 NHibernate.Linq.DefaultQueryProvider.ExecuteQuery(NhLinqExpression nhLinqExpression, IQuery query, NhLinqExpression nhQuery)
+   在 NHibernate.Linq.DefaultQueryProvider.Execute(Expression expression)
+   在 NHibernate.Linq.DefaultQueryProvider.Execute[TResult](Expression expression)
+   在 Remotion.Linq.QueryableBase`1.GetEnumerator()
+   在 System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Orchard.Alias.Implementation.Storage.AliasStorage.List()
+   在 Orchard.Alias.Implementation.Updater.AliasHolderUpdater.Refresh()
+2013-02-19 14:44:41,930 [30] NHibernate.AdoNet.AbstractBatcher - Could not execute query: select scheduledt0_.Id as Id752_, scheduledt0_.TaskType as TaskType752_, scheduledt0_.ScheduledUtc as Schedule3_752_, scheduledt0_.ContentItemVersionRecord_id as ContentI4_752_ from Scheduling_ScheduledTaskRecord scheduledt0_ where scheduledt0_.ScheduledUtc<=:p0
+System.Data.OracleClient.OracleException (0x80131938): ORA-00942: 表或视图不存在
+
+   在 System.Data.OracleClient.OracleConnection.CheckError(OciErrorHandle errorHandle, Int32 rc)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, Boolean needRowid, OciRowidDescriptor& rowidDescriptor, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OracleClient.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+2013-02-19 14:44:41,932 [30] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:44:41,934 [30] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:44:41,936 [30] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:44:41,938 [30] Orchard.Tasks.BackgroundService - Error while processing background task
+NHibernate.Exceptions.GenericADOException: could not execute query
+[ select scheduledt0_.Id as Id752_, scheduledt0_.TaskType as TaskType752_, scheduledt0_.ScheduledUtc as Schedule3_752_, scheduledt0_.ContentItemVersionRecord_id as ContentI4_752_ from Scheduling_ScheduledTaskRecord scheduledt0_ where scheduledt0_.ScheduledUtc<=:p0 ]
+  Name:p1 - Value:2013/2/19 6:44:41
+[SQL: select scheduledt0_.Id as Id752_, scheduledt0_.TaskType as TaskType752_, scheduledt0_.ScheduledUtc as Schedule3_752_, scheduledt0_.ContentItemVersionRecord_id as ContentI4_752_ from Scheduling_ScheduledTaskRecord scheduledt0_ where scheduledt0_.ScheduledUtc<=:p0] ---> System.Data.OracleClient.OracleException: ORA-00942: 表或视图不存在
+
+   在 System.Data.OracleClient.OracleConnection.CheckError(OciErrorHandle errorHandle, Int32 rc)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, Boolean needRowid, OciRowidDescriptor& rowidDescriptor, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OracleClient.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   在 NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session)
+   在 NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   在 NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Loader.Loader.ListIgnoreQueryCache(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Loader.Loader.List(ISessionImplementor session, QueryParameters queryParameters, ISet`1 querySpaces, IType[] resultTypes)
+   在 NHibernate.Hql.Ast.ANTLR.Loader.QueryLoader.List(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Hql.Ast.ANTLR.QueryTranslatorImpl.List(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Engine.Query.HQLQueryPlan.PerformList(QueryParameters queryParameters, ISessionImplementor session, IList results)
+   在 NHibernate.Impl.SessionImpl.List(IQueryExpression queryExpression, QueryParameters queryParameters, IList results)
+   在 NHibernate.Impl.AbstractSessionImpl.List(IQueryExpression queryExpression, QueryParameters parameters)
+   在 NHibernate.Impl.ExpressionQueryImpl.List()
+   在 NHibernate.Linq.DefaultQueryProvider.ExecuteQuery(NhLinqExpression nhLinqExpression, IQuery query, NhLinqExpression nhQuery)
+   在 NHibernate.Linq.DefaultQueryProvider.Execute(Expression expression)
+   在 NHibernate.Linq.DefaultQueryProvider.Execute[TResult](Expression expression)
+   在 Remotion.Linq.QueryableBase`1.GetEnumerator()
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Orchard.Utility.Extensions.ReadOnlyCollectionExtensions.ToReadOnlyCollection[T](IEnumerable`1 enumerable) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Utility\Extensions\ReadOnlyCollectionExtensions.cs:行号 8
+   在 Orchard.Data.Repository`1.Orchard.Data.IRepository<T>.Fetch(Expression`1 predicate) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Data\Repository.cs:行号 72
+   在 Orchard.Core.Scheduling.Services.ScheduledTaskExecutor.Sweep() 位置 e:\Orchard\Orchard改Oracle\src\Orchard.Web\Core\Scheduling\Services\ScheduledTaskExecutor.cs:行号 36
+   在 Orchard.Tasks.BackgroundService.Sweep() 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Tasks\BackgroundService.cs:行号 31
+2013-02-19 14:44:41,959 [30] NHibernate.AdoNet.AbstractBatcher - Could not execute query: SELECT this_.Id as Id768_4_, this_.Number_ as Number2_768_4_, this_.Published as Published768_4_, this_.Latest as Latest768_4_, this_.Data as Data768_4_, this_.ContentItemRecord_id as ContentI6_768_4_, titlepartr3_.Id as Id810_0_, titlepartr3_.Title as Title810_0_, titlepartr3_.ContentItemRecord_id as ContentI3_810_0_, contentite1_.Id as Id767_1_, contentite1_.Data as Data767_1_, contentite1_.ContentType_id as ContentT3_767_1_, blogpartre2_.Id as Id786_2_, blogpartre2_.Description as Descript2_786_2_, blogpartre2_.PostCount as PostCount786_2_, contenttyp8_.Id as Id769_3_, contenttyp8_.Name as Name769_3_ FROM Orchard_Framework_ContentItemV this_ inner join Title_TitlePartRecord titlepartr3_ on this_.Id=titlepartr3_.Id inner join Orchard_Framework_ContentItemR contentite1_ on this_.ContentItemRecord_id=contentite1_.Id inner join Orchard_Blogs_BlogPartRecord blogpartre2_ on contentite1_.Id=blogpartre2_.Id left outer join Orchard_Framework_ContentTypeR contenttyp8_ on contentite1_.ContentType_id=contenttyp8_.Id WHERE this_.Published = :p0 ORDER BY titlepartr3_.Title asc
+System.Data.OracleClient.OracleException (0x80131938): ORA-00942: 表或视图不存在
+
+   在 System.Data.OracleClient.OracleConnection.CheckError(OciErrorHandle errorHandle, Int32 rc)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, Boolean needRowid, OciRowidDescriptor& rowidDescriptor, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OracleClient.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+2013-02-19 14:44:41,961 [30] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:44:41,962 [30] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:44:41,964 [30] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:44:41,965 [30] Orchard.Tasks.BackgroundService - Error while processing background task
+NHibernate.Exceptions.GenericADOException: could not execute query
+[ SELECT this_.Id as Id768_4_, this_.Number_ as Number2_768_4_, this_.Published as Published768_4_, this_.Latest as Latest768_4_, this_.Data as Data768_4_, this_.ContentItemRecord_id as ContentI6_768_4_, titlepartr3_.Id as Id810_0_, titlepartr3_.Title as Title810_0_, titlepartr3_.ContentItemRecord_id as ContentI3_810_0_, contentite1_.Id as Id767_1_, contentite1_.Data as Data767_1_, contentite1_.ContentType_id as ContentT3_767_1_, blogpartre2_.Id as Id786_2_, blogpartre2_.Description as Descript2_786_2_, blogpartre2_.PostCount as PostCount786_2_, contenttyp8_.Id as Id769_3_, contenttyp8_.Name as Name769_3_ FROM Orchard_Framework_ContentItemV this_ inner join Title_TitlePartRecord titlepartr3_ on this_.Id=titlepartr3_.Id inner join Orchard_Framework_ContentItemR contentite1_ on this_.ContentItemRecord_id=contentite1_.Id inner join Orchard_Blogs_BlogPartRecord blogpartre2_ on contentite1_.Id=blogpartre2_.Id left outer join Orchard_Framework_ContentTypeR contenttyp8_ on contentite1_.ContentType_id=contenttyp8_.Id WHERE this_.Published = :p0 ORDER BY titlepartr3_.Title asc ]
+  Name:cp0 - Value:True
+[SQL: SELECT this_.Id as Id768_4_, this_.Number_ as Number2_768_4_, this_.Published as Published768_4_, this_.Latest as Latest768_4_, this_.Data as Data768_4_, this_.ContentItemRecord_id as ContentI6_768_4_, titlepartr3_.Id as Id810_0_, titlepartr3_.Title as Title810_0_, titlepartr3_.ContentItemRecord_id as ContentI3_810_0_, contentite1_.Id as Id767_1_, contentite1_.Data as Data767_1_, contentite1_.ContentType_id as ContentT3_767_1_, blogpartre2_.Id as Id786_2_, blogpartre2_.Description as Descript2_786_2_, blogpartre2_.PostCount as PostCount786_2_, contenttyp8_.Id as Id769_3_, contenttyp8_.Name as Name769_3_ FROM Orchard_Framework_ContentItemV this_ inner join Title_TitlePartRecord titlepartr3_ on this_.Id=titlepartr3_.Id inner join Orchard_Framework_ContentItemR contentite1_ on this_.ContentItemRecord_id=contentite1_.Id inner join Orchard_Blogs_BlogPartRecord blogpartre2_ on contentite1_.Id=blogpartre2_.Id left outer join Orchard_Framework_ContentTypeR contenttyp8_ on contentite1_.ContentType_id=contenttyp8_.Id WHERE this_.Published = :p0 ORDER BY titlepartr3_.Title asc] ---> System.Data.OracleClient.OracleException: ORA-00942: 表或视图不存在
+
+   在 System.Data.OracleClient.OracleConnection.CheckError(OciErrorHandle errorHandle, Int32 rc)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, Boolean needRowid, OciRowidDescriptor& rowidDescriptor, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OracleClient.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   在 NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session)
+   在 NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   在 NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Loader.Loader.ListIgnoreQueryCache(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Loader.Loader.List(ISessionImplementor session, QueryParameters queryParameters, ISet`1 querySpaces, IType[] resultTypes)
+   在 NHibernate.Loader.Criteria.CriteriaLoader.List(ISessionImplementor session)
+   在 NHibernate.Impl.SessionImpl.List(CriteriaImpl criteria, IList results)
+   在 NHibernate.Impl.CriteriaImpl.List(IList results)
+   在 NHibernate.Impl.CriteriaImpl.List[T]()
+   在 Orchard.ContentManagement.DefaultContentQuery.Slice(Int32 skip, Int32 count) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\ContentManagement\DefaultContentQuery.cs:行号 146
+   在 Orchard.ContentManagement.DefaultContentQuery.ContentQuery`1.Orchard.ContentManagement.IContentQuery<T>.List() 位置 e:\Orchard\Orchard改Oracle\src\Orchard\ContentManagement\DefaultContentQuery.cs:行号 191
+   在 Orchard.Blogs.Services.BlogService.Get(VersionOptions versionOptions)
+   在 Orchard.Blogs.Services.BlogService.Get()
+   在 Orchard.Blogs.Routing.BlogPathConstraintUpdator.Refresh()
+   在 Orchard.Blogs.Routing.BlogPathConstraintUpdator.Orchard.Tasks.IBackgroundTask.Sweep()
+   在 Orchard.Tasks.BackgroundService.Sweep() 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Tasks\BackgroundService.cs:行号 31
+2013-02-19 14:44:41,973 [30] NHibernate.AdoNet.AbstractBatcher - Could not execute query: select Id768_3_,Number2_768_3_,Published768_3_,Latest768_3_,Data768_3_,ContentI6_768_3_,Id767_0_,Data767_0_,ContentT3_767_0_,Id773_1_,SiteSalt773_1_,SiteName773_1_,SuperUser773_1_,PageTitl5_773_1_,HomePage773_1_,SiteCult7_773_1_,Resource8_773_1_,PageSize773_1_,SiteTim10_773_1_,Id769_2_,Name769_2_ from ( SELECT this_.Id as Id768_3_, this_.Number_ as Number2_768_3_, this_.Published as Published768_3_, this_.Latest as Latest768_3_, this_.Data as Data768_3_, this_.ContentItemRecord_id as ContentI6_768_3_, contentite1_.Id as Id767_0_, contentite1_.Data as Data767_0_, contentite1_.ContentType_id as ContentT3_767_0_, sitesettin4_.Id as Id773_1_, sitesettin4_.SiteSalt as SiteSalt773_1_, sitesettin4_.SiteName as SiteName773_1_, sitesettin4_.SuperUser as SuperUser773_1_, sitesettin4_.PageTitleSeparator as PageTitl5_773_1_, sitesettin4_.HomePage as HomePage773_1_, sitesettin4_.SiteCulture as SiteCult7_773_1_, sitesettin4_.ResourceDebugMode as Resource8_773_1_, sitesettin4_.PageSize as PageSize773_1_, sitesettin4_.SiteTimeZone as SiteTim10_773_1_, contenttyp5_.Id as Id769_2_, contenttyp5_.Name as Name769_2_ FROM Orchard_Framework_ContentItemV this_ inner join Orchard_Framework_ContentItemR contentite1_ on this_.ContentItemRecord_id=contentite1_.Id left outer join Settings_SiteSettingsPartRecor sitesettin4_ on contentite1_.Id=sitesettin4_.Id left outer join Orchard_Framework_ContentTypeR contenttyp5_ on contentite1_.ContentType_id=contenttyp5_.Id WHERE contentite1_.Id = :p0 and this_.Published = :p1 ) where rownum <=:p2
+System.Data.OracleClient.OracleException (0x80131938): ORA-00942: 表或视图不存在
+
+   在 System.Data.OracleClient.OracleConnection.CheckError(OciErrorHandle errorHandle, Int32 rc)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, Boolean needRowid, OciRowidDescriptor& rowidDescriptor, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OracleClient.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+2013-02-19 14:44:41,975 [30] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:44:41,977 [30] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:44:41,979 [30] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:44:41,980 [30] Orchard.Tasks.BackgroundService - Error while processing background task
+NHibernate.Exceptions.GenericADOException: could not execute query
+[ select Id768_3_,Number2_768_3_,Published768_3_,Latest768_3_,Data768_3_,ContentI6_768_3_,Id767_0_,Data767_0_,ContentT3_767_0_,Id773_1_,SiteSalt773_1_,SiteName773_1_,SuperUser773_1_,PageTitl5_773_1_,HomePage773_1_,SiteCult7_773_1_,Resource8_773_1_,PageSize773_1_,SiteTim10_773_1_,Id769_2_,Name769_2_ from ( SELECT this_.Id as Id768_3_, this_.Number_ as Number2_768_3_, this_.Published as Published768_3_, this_.Latest as Latest768_3_, this_.Data as Data768_3_, this_.ContentItemRecord_id as ContentI6_768_3_, contentite1_.Id as Id767_0_, contentite1_.Data as Data767_0_, contentite1_.ContentType_id as ContentT3_767_0_, sitesettin4_.Id as Id773_1_, sitesettin4_.SiteSalt as SiteSalt773_1_, sitesettin4_.SiteName as SiteName773_1_, sitesettin4_.SuperUser as SuperUser773_1_, sitesettin4_.PageTitleSeparator as PageTitl5_773_1_, sitesettin4_.HomePage as HomePage773_1_, sitesettin4_.SiteCulture as SiteCult7_773_1_, sitesettin4_.ResourceDebugMode as Resource8_773_1_, sitesettin4_.PageSize as PageSize773_1_, sitesettin4_.SiteTimeZone as SiteTim10_773_1_, contenttyp5_.Id as Id769_2_, contenttyp5_.Name as Name769_2_ FROM Orchard_Framework_ContentItemV this_ inner join Orchard_Framework_ContentItemR contentite1_ on this_.ContentItemRecord_id=contentite1_.Id left outer join Settings_SiteSettingsPartRecor sitesettin4_ on contentite1_.Id=sitesettin4_.Id left outer join Orchard_Framework_ContentTypeR contenttyp5_ on contentite1_.ContentType_id=contenttyp5_.Id WHERE contentite1_.Id = :p0 and this_.Published = :p1 ) where rownum <=:p2 ]
+  Name:cp0 - Value:793  Name:cp1 - Value:True
+[SQL: select Id768_3_,Number2_768_3_,Published768_3_,Latest768_3_,Data768_3_,ContentI6_768_3_,Id767_0_,Data767_0_,ContentT3_767_0_,Id773_1_,SiteSalt773_1_,SiteName773_1_,SuperUser773_1_,PageTitl5_773_1_,HomePage773_1_,SiteCult7_773_1_,Resource8_773_1_,PageSize773_1_,SiteTim10_773_1_,Id769_2_,Name769_2_ from ( SELECT this_.Id as Id768_3_, this_.Number_ as Number2_768_3_, this_.Published as Published768_3_, this_.Latest as Latest768_3_, this_.Data as Data768_3_, this_.ContentItemRecord_id as ContentI6_768_3_, contentite1_.Id as Id767_0_, contentite1_.Data as Data767_0_, contentite1_.ContentType_id as ContentT3_767_0_, sitesettin4_.Id as Id773_1_, sitesettin4_.SiteSalt as SiteSalt773_1_, sitesettin4_.SiteName as SiteName773_1_, sitesettin4_.SuperUser as SuperUser773_1_, sitesettin4_.PageTitleSeparator as PageTitl5_773_1_, sitesettin4_.HomePage as HomePage773_1_, sitesettin4_.SiteCulture as SiteCult7_773_1_, sitesettin4_.ResourceDebugMode as Resource8_773_1_, sitesettin4_.PageSize as PageSize773_1_, sitesettin4_.SiteTimeZone as SiteTim10_773_1_, contenttyp5_.Id as Id769_2_, contenttyp5_.Name as Name769_2_ FROM Orchard_Framework_ContentItemV this_ inner join Orchard_Framework_ContentItemR contentite1_ on this_.ContentItemRecord_id=contentite1_.Id left outer join Settings_SiteSettingsPartRecor sitesettin4_ on contentite1_.Id=sitesettin4_.Id left outer join Orchard_Framework_ContentTypeR contenttyp5_ on contentite1_.ContentType_id=contenttyp5_.Id WHERE contentite1_.Id = :p0 and this_.Published = :p1 ) where rownum <=:p2] ---> System.Data.OracleClient.OracleException: ORA-00942: 表或视图不存在
+
+   在 System.Data.OracleClient.OracleConnection.CheckError(OciErrorHandle errorHandle, Int32 rc)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, Boolean needRowid, OciRowidDescriptor& rowidDescriptor, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OracleClient.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   在 NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session)
+   在 NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   在 NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Loader.Loader.ListIgnoreQueryCache(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Loader.Loader.List(ISessionImplementor session, QueryParameters queryParameters, ISet`1 querySpaces, IType[] resultTypes)
+   在 NHibernate.Loader.Criteria.CriteriaLoader.List(ISessionImplementor session)
+   在 NHibernate.Impl.SessionImpl.List(CriteriaImpl criteria, IList results)
+   在 NHibernate.Impl.CriteriaImpl.List(IList results)
+   在 NHibernate.Impl.CriteriaImpl.List[T]()
+   在 Orchard.ContentManagement.DefaultContentManager.GetManyImplementation(QueryHints hints, Action`2 predicate) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\ContentManagement\DefaultContentManager.cs:行号 334
+   在 Orchard.ContentManagement.DefaultContentManager.Get(Int32 id, VersionOptions options, QueryHints hints) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\ContentManagement\DefaultContentManager.cs:行号 140
+   在 Orchard.ContentManagement.ContentGetExtensions.Get[T](IContentManager manager, Int32 id, VersionOptions options, QueryHints hints) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\ContentManagement\ContentExtensions.cs:行号 160
+   在 Orchard.Core.Settings.Services.SiteService.GetSiteSettings() 位置 e:\Orchard\Orchard改Oracle\src\Orchard.Web\Core\Settings\Services\SiteService.cs:行号 46
+   在 Orchard.Settings.CurrentSiteWorkContext.Get[T](String name) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Settings\CurrentSiteWorkContext.cs:行号 13
+   在 Orchard.Environment.WorkContextImplementation.<>c__DisplayClass7`1.<FindResolverForState>b__2(IWorkContextStateProvider wcsp) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Environment\WorkContextImplementation.cs:行号 32
+   在 System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   在 System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   在 Orchard.Environment.WorkContextImplementation.FindResolverForState[T](String name) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Environment\WorkContextImplementation.cs:行号 32
+   在 System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   在 Orchard.Environment.WorkContextImplementation.GetState[T](String name) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Environment\WorkContextImplementation.cs:行号 27
+   在 Orchard.WorkContext.get_CurrentSite() 位置 e:\Orchard\Orchard改Oracle\src\Orchard\WorkContext.cs:行号 52
+   在 Orchard.Warmup.Services.WarmupTask.Sweep()
+   在 Orchard.Tasks.BackgroundService.Sweep() 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Tasks\BackgroundService.cs:行号 31
+2013-02-19 14:45:41,854 [43] NHibernate.AdoNet.AbstractBatcher - Could not execute query: select aliasrecor0_.Id as Id751_, aliasrecor0_.Path as Path751_, aliasrecor0_.RouteValues as RouteVal3_751_, aliasrecor0_.Source as Source751_, aliasrecor0_.Action_id as Action5_751_ from Orchard_Alias_AliasRecord aliasrecor0_ order by aliasrecor0_.Id asc
+System.Data.OracleClient.OracleException (0x80131938): ORA-00942: 表或视图不存在
+
+   在 System.Data.OracleClient.OracleConnection.CheckError(OciErrorHandle errorHandle, Int32 rc)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, Boolean needRowid, OciRowidDescriptor& rowidDescriptor, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OracleClient.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+2013-02-19 14:45:41,857 [43] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:45:41,859 [43] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:45:41,861 [43] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:45:41,862 [43] Orchard.Alias.Implementation.Updater.AliasHolderUpdater - Exception during Alias refresh
+NHibernate.Exceptions.GenericADOException: could not execute query
+[ select aliasrecor0_.Id as Id751_, aliasrecor0_.Path as Path751_, aliasrecor0_.RouteValues as RouteVal3_751_, aliasrecor0_.Source as Source751_, aliasrecor0_.Action_id as Action5_751_ from Orchard_Alias_AliasRecord aliasrecor0_ order by aliasrecor0_.Id asc ]
+[SQL: select aliasrecor0_.Id as Id751_, aliasrecor0_.Path as Path751_, aliasrecor0_.RouteValues as RouteVal3_751_, aliasrecor0_.Source as Source751_, aliasrecor0_.Action_id as Action5_751_ from Orchard_Alias_AliasRecord aliasrecor0_ order by aliasrecor0_.Id asc] ---> System.Data.OracleClient.OracleException: ORA-00942: 表或视图不存在
+
+   在 System.Data.OracleClient.OracleConnection.CheckError(OciErrorHandle errorHandle, Int32 rc)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, Boolean needRowid, OciRowidDescriptor& rowidDescriptor, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OracleClient.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   在 NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session)
+   在 NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   在 NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Loader.Loader.ListIgnoreQueryCache(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Loader.Loader.List(ISessionImplementor session, QueryParameters queryParameters, ISet`1 querySpaces, IType[] resultTypes)
+   在 NHibernate.Hql.Ast.ANTLR.Loader.QueryLoader.List(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Hql.Ast.ANTLR.QueryTranslatorImpl.List(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Engine.Query.HQLQueryPlan.PerformList(QueryParameters queryParameters, ISessionImplementor session, IList results)
+   在 NHibernate.Impl.SessionImpl.List(IQueryExpression queryExpression, QueryParameters queryParameters, IList results)
+   在 NHibernate.Impl.AbstractSessionImpl.List(IQueryExpression queryExpression, QueryParameters parameters)
+   在 NHibernate.Impl.ExpressionQueryImpl.List()
+   在 NHibernate.Linq.DefaultQueryProvider.ExecuteQuery(NhLinqExpression nhLinqExpression, IQuery query, NhLinqExpression nhQuery)
+   在 NHibernate.Linq.DefaultQueryProvider.Execute(Expression expression)
+   在 NHibernate.Linq.DefaultQueryProvider.Execute[TResult](Expression expression)
+   在 Remotion.Linq.QueryableBase`1.GetEnumerator()
+   在 System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Orchard.Alias.Implementation.Storage.AliasStorage.List()
+   在 Orchard.Alias.Implementation.Updater.AliasHolderUpdater.Refresh()
+2013-02-19 14:45:41,870 [43] NHibernate.AdoNet.AbstractBatcher - Could not execute query: select scheduledt0_.Id as Id752_, scheduledt0_.TaskType as TaskType752_, scheduledt0_.ScheduledUtc as Schedule3_752_, scheduledt0_.ContentItemVersionRecord_id as ContentI4_752_ from Scheduling_ScheduledTaskRecord scheduledt0_ where scheduledt0_.ScheduledUtc<=:p0
+System.Data.OracleClient.OracleException (0x80131938): ORA-00942: 表或视图不存在
+
+   在 System.Data.OracleClient.OracleConnection.CheckError(OciErrorHandle errorHandle, Int32 rc)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, Boolean needRowid, OciRowidDescriptor& rowidDescriptor, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OracleClient.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+2013-02-19 14:45:41,872 [43] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:45:41,874 [43] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:45:41,876 [43] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:45:41,877 [43] Orchard.Tasks.BackgroundService - Error while processing background task
+NHibernate.Exceptions.GenericADOException: could not execute query
+[ select scheduledt0_.Id as Id752_, scheduledt0_.TaskType as TaskType752_, scheduledt0_.ScheduledUtc as Schedule3_752_, scheduledt0_.ContentItemVersionRecord_id as ContentI4_752_ from Scheduling_ScheduledTaskRecord scheduledt0_ where scheduledt0_.ScheduledUtc<=:p0 ]
+  Name:p1 - Value:2013/2/19 6:45:41
+[SQL: select scheduledt0_.Id as Id752_, scheduledt0_.TaskType as TaskType752_, scheduledt0_.ScheduledUtc as Schedule3_752_, scheduledt0_.ContentItemVersionRecord_id as ContentI4_752_ from Scheduling_ScheduledTaskRecord scheduledt0_ where scheduledt0_.ScheduledUtc<=:p0] ---> System.Data.OracleClient.OracleException: ORA-00942: 表或视图不存在
+
+   在 System.Data.OracleClient.OracleConnection.CheckError(OciErrorHandle errorHandle, Int32 rc)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, Boolean needRowid, OciRowidDescriptor& rowidDescriptor, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OracleClient.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   在 NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session)
+   在 NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   在 NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Loader.Loader.ListIgnoreQueryCache(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Loader.Loader.List(ISessionImplementor session, QueryParameters queryParameters, ISet`1 querySpaces, IType[] resultTypes)
+   在 NHibernate.Hql.Ast.ANTLR.Loader.QueryLoader.List(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Hql.Ast.ANTLR.QueryTranslatorImpl.List(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Engine.Query.HQLQueryPlan.PerformList(QueryParameters queryParameters, ISessionImplementor session, IList results)
+   在 NHibernate.Impl.SessionImpl.List(IQueryExpression queryExpression, QueryParameters queryParameters, IList results)
+   在 NHibernate.Impl.AbstractSessionImpl.List(IQueryExpression queryExpression, QueryParameters parameters)
+   在 NHibernate.Impl.ExpressionQueryImpl.List()
+   在 NHibernate.Linq.DefaultQueryProvider.ExecuteQuery(NhLinqExpression nhLinqExpression, IQuery query, NhLinqExpression nhQuery)
+   在 NHibernate.Linq.DefaultQueryProvider.Execute(Expression expression)
+   在 NHibernate.Linq.DefaultQueryProvider.Execute[TResult](Expression expression)
+   在 Remotion.Linq.QueryableBase`1.GetEnumerator()
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Orchard.Utility.Extensions.ReadOnlyCollectionExtensions.ToReadOnlyCollection[T](IEnumerable`1 enumerable) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Utility\Extensions\ReadOnlyCollectionExtensions.cs:行号 8
+   在 Orchard.Data.Repository`1.Orchard.Data.IRepository<T>.Fetch(Expression`1 predicate) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Data\Repository.cs:行号 72
+   在 Orchard.Core.Scheduling.Services.ScheduledTaskExecutor.Sweep() 位置 e:\Orchard\Orchard改Oracle\src\Orchard.Web\Core\Scheduling\Services\ScheduledTaskExecutor.cs:行号 36
+   在 Orchard.Tasks.BackgroundService.Sweep() 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Tasks\BackgroundService.cs:行号 31
+2013-02-19 14:45:41,884 [43] NHibernate.AdoNet.AbstractBatcher - Could not execute query: SELECT this_.Id as Id768_4_, this_.Number_ as Number2_768_4_, this_.Published as Published768_4_, this_.Latest as Latest768_4_, this_.Data as Data768_4_, this_.ContentItemRecord_id as ContentI6_768_4_, titlepartr3_.Id as Id810_0_, titlepartr3_.Title as Title810_0_, titlepartr3_.ContentItemRecord_id as ContentI3_810_0_, contentite1_.Id as Id767_1_, contentite1_.Data as Data767_1_, contentite1_.ContentType_id as ContentT3_767_1_, blogpartre2_.Id as Id786_2_, blogpartre2_.Description as Descript2_786_2_, blogpartre2_.PostCount as PostCount786_2_, contenttyp8_.Id as Id769_3_, contenttyp8_.Name as Name769_3_ FROM Orchard_Framework_ContentItemV this_ inner join Title_TitlePartRecord titlepartr3_ on this_.Id=titlepartr3_.Id inner join Orchard_Framework_ContentItemR contentite1_ on this_.ContentItemRecord_id=contentite1_.Id inner join Orchard_Blogs_BlogPartRecord blogpartre2_ on contentite1_.Id=blogpartre2_.Id left outer join Orchard_Framework_ContentTypeR contenttyp8_ on contentite1_.ContentType_id=contenttyp8_.Id WHERE this_.Published = :p0 ORDER BY titlepartr3_.Title asc
+System.Data.OracleClient.OracleException (0x80131938): ORA-00942: 表或视图不存在
+
+   在 System.Data.OracleClient.OracleConnection.CheckError(OciErrorHandle errorHandle, Int32 rc)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, Boolean needRowid, OciRowidDescriptor& rowidDescriptor, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OracleClient.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+2013-02-19 14:45:41,886 [43] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:45:41,888 [43] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:45:41,890 [43] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:45:41,892 [43] Orchard.Tasks.BackgroundService - Error while processing background task
+NHibernate.Exceptions.GenericADOException: could not execute query
+[ SELECT this_.Id as Id768_4_, this_.Number_ as Number2_768_4_, this_.Published as Published768_4_, this_.Latest as Latest768_4_, this_.Data as Data768_4_, this_.ContentItemRecord_id as ContentI6_768_4_, titlepartr3_.Id as Id810_0_, titlepartr3_.Title as Title810_0_, titlepartr3_.ContentItemRecord_id as ContentI3_810_0_, contentite1_.Id as Id767_1_, contentite1_.Data as Data767_1_, contentite1_.ContentType_id as ContentT3_767_1_, blogpartre2_.Id as Id786_2_, blogpartre2_.Description as Descript2_786_2_, blogpartre2_.PostCount as PostCount786_2_, contenttyp8_.Id as Id769_3_, contenttyp8_.Name as Name769_3_ FROM Orchard_Framework_ContentItemV this_ inner join Title_TitlePartRecord titlepartr3_ on this_.Id=titlepartr3_.Id inner join Orchard_Framework_ContentItemR contentite1_ on this_.ContentItemRecord_id=contentite1_.Id inner join Orchard_Blogs_BlogPartRecord blogpartre2_ on contentite1_.Id=blogpartre2_.Id left outer join Orchard_Framework_ContentTypeR contenttyp8_ on contentite1_.ContentType_id=contenttyp8_.Id WHERE this_.Published = :p0 ORDER BY titlepartr3_.Title asc ]
+  Name:cp0 - Value:True
+[SQL: SELECT this_.Id as Id768_4_, this_.Number_ as Number2_768_4_, this_.Published as Published768_4_, this_.Latest as Latest768_4_, this_.Data as Data768_4_, this_.ContentItemRecord_id as ContentI6_768_4_, titlepartr3_.Id as Id810_0_, titlepartr3_.Title as Title810_0_, titlepartr3_.ContentItemRecord_id as ContentI3_810_0_, contentite1_.Id as Id767_1_, contentite1_.Data as Data767_1_, contentite1_.ContentType_id as ContentT3_767_1_, blogpartre2_.Id as Id786_2_, blogpartre2_.Description as Descript2_786_2_, blogpartre2_.PostCount as PostCount786_2_, contenttyp8_.Id as Id769_3_, contenttyp8_.Name as Name769_3_ FROM Orchard_Framework_ContentItemV this_ inner join Title_TitlePartRecord titlepartr3_ on this_.Id=titlepartr3_.Id inner join Orchard_Framework_ContentItemR contentite1_ on this_.ContentItemRecord_id=contentite1_.Id inner join Orchard_Blogs_BlogPartRecord blogpartre2_ on contentite1_.Id=blogpartre2_.Id left outer join Orchard_Framework_ContentTypeR contenttyp8_ on contentite1_.ContentType_id=contenttyp8_.Id WHERE this_.Published = :p0 ORDER BY titlepartr3_.Title asc] ---> System.Data.OracleClient.OracleException: ORA-00942: 表或视图不存在
+
+   在 System.Data.OracleClient.OracleConnection.CheckError(OciErrorHandle errorHandle, Int32 rc)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, Boolean needRowid, OciRowidDescriptor& rowidDescriptor, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OracleClient.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   在 NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session)
+   在 NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   在 NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Loader.Loader.ListIgnoreQueryCache(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Loader.Loader.List(ISessionImplementor session, QueryParameters queryParameters, ISet`1 querySpaces, IType[] resultTypes)
+   在 NHibernate.Loader.Criteria.CriteriaLoader.List(ISessionImplementor session)
+   在 NHibernate.Impl.SessionImpl.List(CriteriaImpl criteria, IList results)
+   在 NHibernate.Impl.CriteriaImpl.List(IList results)
+   在 NHibernate.Impl.CriteriaImpl.List[T]()
+   在 Orchard.ContentManagement.DefaultContentQuery.Slice(Int32 skip, Int32 count) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\ContentManagement\DefaultContentQuery.cs:行号 146
+   在 Orchard.ContentManagement.DefaultContentQuery.ContentQuery`1.Orchard.ContentManagement.IContentQuery<T>.List() 位置 e:\Orchard\Orchard改Oracle\src\Orchard\ContentManagement\DefaultContentQuery.cs:行号 191
+   在 Orchard.Blogs.Services.BlogService.Get(VersionOptions versionOptions)
+   在 Orchard.Blogs.Services.BlogService.Get()
+   在 Orchard.Blogs.Routing.BlogPathConstraintUpdator.Refresh()
+   在 Orchard.Blogs.Routing.BlogPathConstraintUpdator.Orchard.Tasks.IBackgroundTask.Sweep()
+   在 Orchard.Tasks.BackgroundService.Sweep() 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Tasks\BackgroundService.cs:行号 31
+2013-02-19 14:45:41,900 [43] NHibernate.AdoNet.AbstractBatcher - Could not execute query: select Id768_3_,Number2_768_3_,Published768_3_,Latest768_3_,Data768_3_,ContentI6_768_3_,Id767_0_,Data767_0_,ContentT3_767_0_,Id773_1_,SiteSalt773_1_,SiteName773_1_,SuperUser773_1_,PageTitl5_773_1_,HomePage773_1_,SiteCult7_773_1_,Resource8_773_1_,PageSize773_1_,SiteTim10_773_1_,Id769_2_,Name769_2_ from ( SELECT this_.Id as Id768_3_, this_.Number_ as Number2_768_3_, this_.Published as Published768_3_, this_.Latest as Latest768_3_, this_.Data as Data768_3_, this_.ContentItemRecord_id as ContentI6_768_3_, contentite1_.Id as Id767_0_, contentite1_.Data as Data767_0_, contentite1_.ContentType_id as ContentT3_767_0_, sitesettin4_.Id as Id773_1_, sitesettin4_.SiteSalt as SiteSalt773_1_, sitesettin4_.SiteName as SiteName773_1_, sitesettin4_.SuperUser as SuperUser773_1_, sitesettin4_.PageTitleSeparator as PageTitl5_773_1_, sitesettin4_.HomePage as HomePage773_1_, sitesettin4_.SiteCulture as SiteCult7_773_1_, sitesettin4_.ResourceDebugMode as Resource8_773_1_, sitesettin4_.PageSize as PageSize773_1_, sitesettin4_.SiteTimeZone as SiteTim10_773_1_, contenttyp5_.Id as Id769_2_, contenttyp5_.Name as Name769_2_ FROM Orchard_Framework_ContentItemV this_ inner join Orchard_Framework_ContentItemR contentite1_ on this_.ContentItemRecord_id=contentite1_.Id left outer join Settings_SiteSettingsPartRecor sitesettin4_ on contentite1_.Id=sitesettin4_.Id left outer join Orchard_Framework_ContentTypeR contenttyp5_ on contentite1_.ContentType_id=contenttyp5_.Id WHERE contentite1_.Id = :p0 and this_.Published = :p1 ) where rownum <=:p2
+System.Data.OracleClient.OracleException (0x80131938): ORA-00942: 表或视图不存在
+
+   在 System.Data.OracleClient.OracleConnection.CheckError(OciErrorHandle errorHandle, Int32 rc)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, Boolean needRowid, OciRowidDescriptor& rowidDescriptor, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OracleClient.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+2013-02-19 14:45:41,903 [43] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:45:41,904 [43] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:45:41,906 [43] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:45:41,907 [43] Orchard.Tasks.BackgroundService - Error while processing background task
+NHibernate.Exceptions.GenericADOException: could not execute query
+[ select Id768_3_,Number2_768_3_,Published768_3_,Latest768_3_,Data768_3_,ContentI6_768_3_,Id767_0_,Data767_0_,ContentT3_767_0_,Id773_1_,SiteSalt773_1_,SiteName773_1_,SuperUser773_1_,PageTitl5_773_1_,HomePage773_1_,SiteCult7_773_1_,Resource8_773_1_,PageSize773_1_,SiteTim10_773_1_,Id769_2_,Name769_2_ from ( SELECT this_.Id as Id768_3_, this_.Number_ as Number2_768_3_, this_.Published as Published768_3_, this_.Latest as Latest768_3_, this_.Data as Data768_3_, this_.ContentItemRecord_id as ContentI6_768_3_, contentite1_.Id as Id767_0_, contentite1_.Data as Data767_0_, contentite1_.ContentType_id as ContentT3_767_0_, sitesettin4_.Id as Id773_1_, sitesettin4_.SiteSalt as SiteSalt773_1_, sitesettin4_.SiteName as SiteName773_1_, sitesettin4_.SuperUser as SuperUser773_1_, sitesettin4_.PageTitleSeparator as PageTitl5_773_1_, sitesettin4_.HomePage as HomePage773_1_, sitesettin4_.SiteCulture as SiteCult7_773_1_, sitesettin4_.ResourceDebugMode as Resource8_773_1_, sitesettin4_.PageSize as PageSize773_1_, sitesettin4_.SiteTimeZone as SiteTim10_773_1_, contenttyp5_.Id as Id769_2_, contenttyp5_.Name as Name769_2_ FROM Orchard_Framework_ContentItemV this_ inner join Orchard_Framework_ContentItemR contentite1_ on this_.ContentItemRecord_id=contentite1_.Id left outer join Settings_SiteSettingsPartRecor sitesettin4_ on contentite1_.Id=sitesettin4_.Id left outer join Orchard_Framework_ContentTypeR contenttyp5_ on contentite1_.ContentType_id=contenttyp5_.Id WHERE contentite1_.Id = :p0 and this_.Published = :p1 ) where rownum <=:p2 ]
+  Name:cp0 - Value:793  Name:cp1 - Value:True
+[SQL: select Id768_3_,Number2_768_3_,Published768_3_,Latest768_3_,Data768_3_,ContentI6_768_3_,Id767_0_,Data767_0_,ContentT3_767_0_,Id773_1_,SiteSalt773_1_,SiteName773_1_,SuperUser773_1_,PageTitl5_773_1_,HomePage773_1_,SiteCult7_773_1_,Resource8_773_1_,PageSize773_1_,SiteTim10_773_1_,Id769_2_,Name769_2_ from ( SELECT this_.Id as Id768_3_, this_.Number_ as Number2_768_3_, this_.Published as Published768_3_, this_.Latest as Latest768_3_, this_.Data as Data768_3_, this_.ContentItemRecord_id as ContentI6_768_3_, contentite1_.Id as Id767_0_, contentite1_.Data as Data767_0_, contentite1_.ContentType_id as ContentT3_767_0_, sitesettin4_.Id as Id773_1_, sitesettin4_.SiteSalt as SiteSalt773_1_, sitesettin4_.SiteName as SiteName773_1_, sitesettin4_.SuperUser as SuperUser773_1_, sitesettin4_.PageTitleSeparator as PageTitl5_773_1_, sitesettin4_.HomePage as HomePage773_1_, sitesettin4_.SiteCulture as SiteCult7_773_1_, sitesettin4_.ResourceDebugMode as Resource8_773_1_, sitesettin4_.PageSize as PageSize773_1_, sitesettin4_.SiteTimeZone as SiteTim10_773_1_, contenttyp5_.Id as Id769_2_, contenttyp5_.Name as Name769_2_ FROM Orchard_Framework_ContentItemV this_ inner join Orchard_Framework_ContentItemR contentite1_ on this_.ContentItemRecord_id=contentite1_.Id left outer join Settings_SiteSettingsPartRecor sitesettin4_ on contentite1_.Id=sitesettin4_.Id left outer join Orchard_Framework_ContentTypeR contenttyp5_ on contentite1_.ContentType_id=contenttyp5_.Id WHERE contentite1_.Id = :p0 and this_.Published = :p1 ) where rownum <=:p2] ---> System.Data.OracleClient.OracleException: ORA-00942: 表或视图不存在
+
+   在 System.Data.OracleClient.OracleConnection.CheckError(OciErrorHandle errorHandle, Int32 rc)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, Boolean needRowid, OciRowidDescriptor& rowidDescriptor, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OracleClient.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   在 NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session)
+   在 NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   在 NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Loader.Loader.ListIgnoreQueryCache(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Loader.Loader.List(ISessionImplementor session, QueryParameters queryParameters, ISet`1 querySpaces, IType[] resultTypes)
+   在 NHibernate.Loader.Criteria.CriteriaLoader.List(ISessionImplementor session)
+   在 NHibernate.Impl.SessionImpl.List(CriteriaImpl criteria, IList results)
+   在 NHibernate.Impl.CriteriaImpl.List(IList results)
+   在 NHibernate.Impl.CriteriaImpl.List[T]()
+   在 Orchard.ContentManagement.DefaultContentManager.GetManyImplementation(QueryHints hints, Action`2 predicate) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\ContentManagement\DefaultContentManager.cs:行号 334
+   在 Orchard.ContentManagement.DefaultContentManager.Get(Int32 id, VersionOptions options, QueryHints hints) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\ContentManagement\DefaultContentManager.cs:行号 140
+   在 Orchard.ContentManagement.ContentGetExtensions.Get[T](IContentManager manager, Int32 id, VersionOptions options, QueryHints hints) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\ContentManagement\ContentExtensions.cs:行号 160
+   在 Orchard.Core.Settings.Services.SiteService.GetSiteSettings() 位置 e:\Orchard\Orchard改Oracle\src\Orchard.Web\Core\Settings\Services\SiteService.cs:行号 46
+   在 Orchard.Settings.CurrentSiteWorkContext.Get[T](String name) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Settings\CurrentSiteWorkContext.cs:行号 13
+   在 Orchard.Environment.WorkContextImplementation.<>c__DisplayClass7`1.<FindResolverForState>b__2(IWorkContextStateProvider wcsp) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Environment\WorkContextImplementation.cs:行号 32
+   在 System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   在 System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   在 Orchard.Environment.WorkContextImplementation.FindResolverForState[T](String name) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Environment\WorkContextImplementation.cs:行号 32
+   在 System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   在 Orchard.Environment.WorkContextImplementation.GetState[T](String name) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Environment\WorkContextImplementation.cs:行号 27
+   在 Orchard.WorkContext.get_CurrentSite() 位置 e:\Orchard\Orchard改Oracle\src\Orchard\WorkContext.cs:行号 52
+   在 Orchard.Warmup.Services.WarmupTask.Sweep()
+   在 Orchard.Tasks.BackgroundService.Sweep() 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Tasks\BackgroundService.cs:行号 31
+2013-02-19 14:46:41,865 [30] NHibernate.AdoNet.AbstractBatcher - Could not execute query: select aliasrecor0_.Id as Id751_, aliasrecor0_.Path as Path751_, aliasrecor0_.RouteValues as RouteVal3_751_, aliasrecor0_.Source as Source751_, aliasrecor0_.Action_id as Action5_751_ from Orchard_Alias_AliasRecord aliasrecor0_ order by aliasrecor0_.Id asc
+System.Data.OracleClient.OracleException (0x80131938): ORA-00942: 表或视图不存在
+
+   在 System.Data.OracleClient.OracleConnection.CheckError(OciErrorHandle errorHandle, Int32 rc)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, Boolean needRowid, OciRowidDescriptor& rowidDescriptor, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OracleClient.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+2013-02-19 14:46:41,867 [30] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:46:41,869 [30] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:46:41,871 [30] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:46:41,872 [30] Orchard.Alias.Implementation.Updater.AliasHolderUpdater - Exception during Alias refresh
+NHibernate.Exceptions.GenericADOException: could not execute query
+[ select aliasrecor0_.Id as Id751_, aliasrecor0_.Path as Path751_, aliasrecor0_.RouteValues as RouteVal3_751_, aliasrecor0_.Source as Source751_, aliasrecor0_.Action_id as Action5_751_ from Orchard_Alias_AliasRecord aliasrecor0_ order by aliasrecor0_.Id asc ]
+[SQL: select aliasrecor0_.Id as Id751_, aliasrecor0_.Path as Path751_, aliasrecor0_.RouteValues as RouteVal3_751_, aliasrecor0_.Source as Source751_, aliasrecor0_.Action_id as Action5_751_ from Orchard_Alias_AliasRecord aliasrecor0_ order by aliasrecor0_.Id asc] ---> System.Data.OracleClient.OracleException: ORA-00942: 表或视图不存在
+
+   在 System.Data.OracleClient.OracleConnection.CheckError(OciErrorHandle errorHandle, Int32 rc)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, Boolean needRowid, OciRowidDescriptor& rowidDescriptor, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OracleClient.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   在 NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session)
+   在 NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   在 NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Loader.Loader.ListIgnoreQueryCache(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Loader.Loader.List(ISessionImplementor session, QueryParameters queryParameters, ISet`1 querySpaces, IType[] resultTypes)
+   在 NHibernate.Hql.Ast.ANTLR.Loader.QueryLoader.List(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Hql.Ast.ANTLR.QueryTranslatorImpl.List(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Engine.Query.HQLQueryPlan.PerformList(QueryParameters queryParameters, ISessionImplementor session, IList results)
+   在 NHibernate.Impl.SessionImpl.List(IQueryExpression queryExpression, QueryParameters queryParameters, IList results)
+   在 NHibernate.Impl.AbstractSessionImpl.List(IQueryExpression queryExpression, QueryParameters parameters)
+   在 NHibernate.Impl.ExpressionQueryImpl.List()
+   在 NHibernate.Linq.DefaultQueryProvider.ExecuteQuery(NhLinqExpression nhLinqExpression, IQuery query, NhLinqExpression nhQuery)
+   在 NHibernate.Linq.DefaultQueryProvider.Execute(Expression expression)
+   在 NHibernate.Linq.DefaultQueryProvider.Execute[TResult](Expression expression)
+   在 Remotion.Linq.QueryableBase`1.GetEnumerator()
+   在 System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Orchard.Alias.Implementation.Storage.AliasStorage.List()
+   在 Orchard.Alias.Implementation.Updater.AliasHolderUpdater.Refresh()
+2013-02-19 14:46:41,879 [30] NHibernate.AdoNet.AbstractBatcher - Could not execute query: select scheduledt0_.Id as Id752_, scheduledt0_.TaskType as TaskType752_, scheduledt0_.ScheduledUtc as Schedule3_752_, scheduledt0_.ContentItemVersionRecord_id as ContentI4_752_ from Scheduling_ScheduledTaskRecord scheduledt0_ where scheduledt0_.ScheduledUtc<=:p0
+System.Data.OracleClient.OracleException (0x80131938): ORA-00942: 表或视图不存在
+
+   在 System.Data.OracleClient.OracleConnection.CheckError(OciErrorHandle errorHandle, Int32 rc)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, Boolean needRowid, OciRowidDescriptor& rowidDescriptor, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OracleClient.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+2013-02-19 14:46:41,881 [30] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:46:41,883 [30] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:46:41,885 [30] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:46:41,886 [30] Orchard.Tasks.BackgroundService - Error while processing background task
+NHibernate.Exceptions.GenericADOException: could not execute query
+[ select scheduledt0_.Id as Id752_, scheduledt0_.TaskType as TaskType752_, scheduledt0_.ScheduledUtc as Schedule3_752_, scheduledt0_.ContentItemVersionRecord_id as ContentI4_752_ from Scheduling_ScheduledTaskRecord scheduledt0_ where scheduledt0_.ScheduledUtc<=:p0 ]
+  Name:p1 - Value:2013/2/19 6:46:41
+[SQL: select scheduledt0_.Id as Id752_, scheduledt0_.TaskType as TaskType752_, scheduledt0_.ScheduledUtc as Schedule3_752_, scheduledt0_.ContentItemVersionRecord_id as ContentI4_752_ from Scheduling_ScheduledTaskRecord scheduledt0_ where scheduledt0_.ScheduledUtc<=:p0] ---> System.Data.OracleClient.OracleException: ORA-00942: 表或视图不存在
+
+   在 System.Data.OracleClient.OracleConnection.CheckError(OciErrorHandle errorHandle, Int32 rc)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, Boolean needRowid, OciRowidDescriptor& rowidDescriptor, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OracleClient.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   在 NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session)
+   在 NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   在 NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Loader.Loader.ListIgnoreQueryCache(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Loader.Loader.List(ISessionImplementor session, QueryParameters queryParameters, ISet`1 querySpaces, IType[] resultTypes)
+   在 NHibernate.Hql.Ast.ANTLR.Loader.QueryLoader.List(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Hql.Ast.ANTLR.QueryTranslatorImpl.List(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Engine.Query.HQLQueryPlan.PerformList(QueryParameters queryParameters, ISessionImplementor session, IList results)
+   在 NHibernate.Impl.SessionImpl.List(IQueryExpression queryExpression, QueryParameters queryParameters, IList results)
+   在 NHibernate.Impl.AbstractSessionImpl.List(IQueryExpression queryExpression, QueryParameters parameters)
+   在 NHibernate.Impl.ExpressionQueryImpl.List()
+   在 NHibernate.Linq.DefaultQueryProvider.ExecuteQuery(NhLinqExpression nhLinqExpression, IQuery query, NhLinqExpression nhQuery)
+   在 NHibernate.Linq.DefaultQueryProvider.Execute(Expression expression)
+   在 NHibernate.Linq.DefaultQueryProvider.Execute[TResult](Expression expression)
+   在 Remotion.Linq.QueryableBase`1.GetEnumerator()
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Orchard.Utility.Extensions.ReadOnlyCollectionExtensions.ToReadOnlyCollection[T](IEnumerable`1 enumerable) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Utility\Extensions\ReadOnlyCollectionExtensions.cs:行号 8
+   在 Orchard.Data.Repository`1.Orchard.Data.IRepository<T>.Fetch(Expression`1 predicate) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Data\Repository.cs:行号 72
+   在 Orchard.Core.Scheduling.Services.ScheduledTaskExecutor.Sweep() 位置 e:\Orchard\Orchard改Oracle\src\Orchard.Web\Core\Scheduling\Services\ScheduledTaskExecutor.cs:行号 36
+   在 Orchard.Tasks.BackgroundService.Sweep() 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Tasks\BackgroundService.cs:行号 31
+2013-02-19 14:46:41,894 [30] NHibernate.AdoNet.AbstractBatcher - Could not execute query: SELECT this_.Id as Id768_4_, this_.Number_ as Number2_768_4_, this_.Published as Published768_4_, this_.Latest as Latest768_4_, this_.Data as Data768_4_, this_.ContentItemRecord_id as ContentI6_768_4_, titlepartr3_.Id as Id810_0_, titlepartr3_.Title as Title810_0_, titlepartr3_.ContentItemRecord_id as ContentI3_810_0_, contentite1_.Id as Id767_1_, contentite1_.Data as Data767_1_, contentite1_.ContentType_id as ContentT3_767_1_, blogpartre2_.Id as Id786_2_, blogpartre2_.Description as Descript2_786_2_, blogpartre2_.PostCount as PostCount786_2_, contenttyp8_.Id as Id769_3_, contenttyp8_.Name as Name769_3_ FROM Orchard_Framework_ContentItemV this_ inner join Title_TitlePartRecord titlepartr3_ on this_.Id=titlepartr3_.Id inner join Orchard_Framework_ContentItemR contentite1_ on this_.ContentItemRecord_id=contentite1_.Id inner join Orchard_Blogs_BlogPartRecord blogpartre2_ on contentite1_.Id=blogpartre2_.Id left outer join Orchard_Framework_ContentTypeR contenttyp8_ on contentite1_.ContentType_id=contenttyp8_.Id WHERE this_.Published = :p0 ORDER BY titlepartr3_.Title asc
+System.Data.OracleClient.OracleException (0x80131938): ORA-00942: 表或视图不存在
+
+   在 System.Data.OracleClient.OracleConnection.CheckError(OciErrorHandle errorHandle, Int32 rc)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, Boolean needRowid, OciRowidDescriptor& rowidDescriptor, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OracleClient.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+2013-02-19 14:46:41,896 [30] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:46:41,898 [30] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:46:41,900 [30] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:46:41,902 [30] Orchard.Tasks.BackgroundService - Error while processing background task
+NHibernate.Exceptions.GenericADOException: could not execute query
+[ SELECT this_.Id as Id768_4_, this_.Number_ as Number2_768_4_, this_.Published as Published768_4_, this_.Latest as Latest768_4_, this_.Data as Data768_4_, this_.ContentItemRecord_id as ContentI6_768_4_, titlepartr3_.Id as Id810_0_, titlepartr3_.Title as Title810_0_, titlepartr3_.ContentItemRecord_id as ContentI3_810_0_, contentite1_.Id as Id767_1_, contentite1_.Data as Data767_1_, contentite1_.ContentType_id as ContentT3_767_1_, blogpartre2_.Id as Id786_2_, blogpartre2_.Description as Descript2_786_2_, blogpartre2_.PostCount as PostCount786_2_, contenttyp8_.Id as Id769_3_, contenttyp8_.Name as Name769_3_ FROM Orchard_Framework_ContentItemV this_ inner join Title_TitlePartRecord titlepartr3_ on this_.Id=titlepartr3_.Id inner join Orchard_Framework_ContentItemR contentite1_ on this_.ContentItemRecord_id=contentite1_.Id inner join Orchard_Blogs_BlogPartRecord blogpartre2_ on contentite1_.Id=blogpartre2_.Id left outer join Orchard_Framework_ContentTypeR contenttyp8_ on contentite1_.ContentType_id=contenttyp8_.Id WHERE this_.Published = :p0 ORDER BY titlepartr3_.Title asc ]
+  Name:cp0 - Value:True
+[SQL: SELECT this_.Id as Id768_4_, this_.Number_ as Number2_768_4_, this_.Published as Published768_4_, this_.Latest as Latest768_4_, this_.Data as Data768_4_, this_.ContentItemRecord_id as ContentI6_768_4_, titlepartr3_.Id as Id810_0_, titlepartr3_.Title as Title810_0_, titlepartr3_.ContentItemRecord_id as ContentI3_810_0_, contentite1_.Id as Id767_1_, contentite1_.Data as Data767_1_, contentite1_.ContentType_id as ContentT3_767_1_, blogpartre2_.Id as Id786_2_, blogpartre2_.Description as Descript2_786_2_, blogpartre2_.PostCount as PostCount786_2_, contenttyp8_.Id as Id769_3_, contenttyp8_.Name as Name769_3_ FROM Orchard_Framework_ContentItemV this_ inner join Title_TitlePartRecord titlepartr3_ on this_.Id=titlepartr3_.Id inner join Orchard_Framework_ContentItemR contentite1_ on this_.ContentItemRecord_id=contentite1_.Id inner join Orchard_Blogs_BlogPartRecord blogpartre2_ on contentite1_.Id=blogpartre2_.Id left outer join Orchard_Framework_ContentTypeR contenttyp8_ on contentite1_.ContentType_id=contenttyp8_.Id WHERE this_.Published = :p0 ORDER BY titlepartr3_.Title asc] ---> System.Data.OracleClient.OracleException: ORA-00942: 表或视图不存在
+
+   在 System.Data.OracleClient.OracleConnection.CheckError(OciErrorHandle errorHandle, Int32 rc)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, Boolean needRowid, OciRowidDescriptor& rowidDescriptor, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OracleClient.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   在 NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session)
+   在 NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   在 NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Loader.Loader.ListIgnoreQueryCache(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Loader.Loader.List(ISessionImplementor session, QueryParameters queryParameters, ISet`1 querySpaces, IType[] resultTypes)
+   在 NHibernate.Loader.Criteria.CriteriaLoader.List(ISessionImplementor session)
+   在 NHibernate.Impl.SessionImpl.List(CriteriaImpl criteria, IList results)
+   在 NHibernate.Impl.CriteriaImpl.List(IList results)
+   在 NHibernate.Impl.CriteriaImpl.List[T]()
+   在 Orchard.ContentManagement.DefaultContentQuery.Slice(Int32 skip, Int32 count) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\ContentManagement\DefaultContentQuery.cs:行号 146
+   在 Orchard.ContentManagement.DefaultContentQuery.ContentQuery`1.Orchard.ContentManagement.IContentQuery<T>.List() 位置 e:\Orchard\Orchard改Oracle\src\Orchard\ContentManagement\DefaultContentQuery.cs:行号 191
+   在 Orchard.Blogs.Services.BlogService.Get(VersionOptions versionOptions)
+   在 Orchard.Blogs.Services.BlogService.Get()
+   在 Orchard.Blogs.Routing.BlogPathConstraintUpdator.Refresh()
+   在 Orchard.Blogs.Routing.BlogPathConstraintUpdator.Orchard.Tasks.IBackgroundTask.Sweep()
+   在 Orchard.Tasks.BackgroundService.Sweep() 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Tasks\BackgroundService.cs:行号 31
+2013-02-19 14:46:41,910 [30] NHibernate.AdoNet.AbstractBatcher - Could not execute query: select Id768_3_,Number2_768_3_,Published768_3_,Latest768_3_,Data768_3_,ContentI6_768_3_,Id767_0_,Data767_0_,ContentT3_767_0_,Id773_1_,SiteSalt773_1_,SiteName773_1_,SuperUser773_1_,PageTitl5_773_1_,HomePage773_1_,SiteCult7_773_1_,Resource8_773_1_,PageSize773_1_,SiteTim10_773_1_,Id769_2_,Name769_2_ from ( SELECT this_.Id as Id768_3_, this_.Number_ as Number2_768_3_, this_.Published as Published768_3_, this_.Latest as Latest768_3_, this_.Data as Data768_3_, this_.ContentItemRecord_id as ContentI6_768_3_, contentite1_.Id as Id767_0_, contentite1_.Data as Data767_0_, contentite1_.ContentType_id as ContentT3_767_0_, sitesettin4_.Id as Id773_1_, sitesettin4_.SiteSalt as SiteSalt773_1_, sitesettin4_.SiteName as SiteName773_1_, sitesettin4_.SuperUser as SuperUser773_1_, sitesettin4_.PageTitleSeparator as PageTitl5_773_1_, sitesettin4_.HomePage as HomePage773_1_, sitesettin4_.SiteCulture as SiteCult7_773_1_, sitesettin4_.ResourceDebugMode as Resource8_773_1_, sitesettin4_.PageSize as PageSize773_1_, sitesettin4_.SiteTimeZone as SiteTim10_773_1_, contenttyp5_.Id as Id769_2_, contenttyp5_.Name as Name769_2_ FROM Orchard_Framework_ContentItemV this_ inner join Orchard_Framework_ContentItemR contentite1_ on this_.ContentItemRecord_id=contentite1_.Id left outer join Settings_SiteSettingsPartRecor sitesettin4_ on contentite1_.Id=sitesettin4_.Id left outer join Orchard_Framework_ContentTypeR contenttyp5_ on contentite1_.ContentType_id=contenttyp5_.Id WHERE contentite1_.Id = :p0 and this_.Published = :p1 ) where rownum <=:p2
+System.Data.OracleClient.OracleException (0x80131938): ORA-00942: 表或视图不存在
+
+   在 System.Data.OracleClient.OracleConnection.CheckError(OciErrorHandle errorHandle, Int32 rc)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, Boolean needRowid, OciRowidDescriptor& rowidDescriptor, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OracleClient.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+2013-02-19 14:46:41,912 [30] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:46:41,914 [30] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:46:41,916 [30] NHibernate.Util.ADOExceptionReporter - ORA-00942: 表或视图不存在
+
+2013-02-19 14:46:41,918 [30] Orchard.Tasks.BackgroundService - Error while processing background task
+NHibernate.Exceptions.GenericADOException: could not execute query
+[ select Id768_3_,Number2_768_3_,Published768_3_,Latest768_3_,Data768_3_,ContentI6_768_3_,Id767_0_,Data767_0_,ContentT3_767_0_,Id773_1_,SiteSalt773_1_,SiteName773_1_,SuperUser773_1_,PageTitl5_773_1_,HomePage773_1_,SiteCult7_773_1_,Resource8_773_1_,PageSize773_1_,SiteTim10_773_1_,Id769_2_,Name769_2_ from ( SELECT this_.Id as Id768_3_, this_.Number_ as Number2_768_3_, this_.Published as Published768_3_, this_.Latest as Latest768_3_, this_.Data as Data768_3_, this_.ContentItemRecord_id as ContentI6_768_3_, contentite1_.Id as Id767_0_, contentite1_.Data as Data767_0_, contentite1_.ContentType_id as ContentT3_767_0_, sitesettin4_.Id as Id773_1_, sitesettin4_.SiteSalt as SiteSalt773_1_, sitesettin4_.SiteName as SiteName773_1_, sitesettin4_.SuperUser as SuperUser773_1_, sitesettin4_.PageTitleSeparator as PageTitl5_773_1_, sitesettin4_.HomePage as HomePage773_1_, sitesettin4_.SiteCulture as SiteCult7_773_1_, sitesettin4_.ResourceDebugMode as Resource8_773_1_, sitesettin4_.PageSize as PageSize773_1_, sitesettin4_.SiteTimeZone as SiteTim10_773_1_, contenttyp5_.Id as Id769_2_, contenttyp5_.Name as Name769_2_ FROM Orchard_Framework_ContentItemV this_ inner join Orchard_Framework_ContentItemR contentite1_ on this_.ContentItemRecord_id=contentite1_.Id left outer join Settings_SiteSettingsPartRecor sitesettin4_ on contentite1_.Id=sitesettin4_.Id left outer join Orchard_Framework_ContentTypeR contenttyp5_ on contentite1_.ContentType_id=contenttyp5_.Id WHERE contentite1_.Id = :p0 and this_.Published = :p1 ) where rownum <=:p2 ]
+  Name:cp0 - Value:793  Name:cp1 - Value:True
+[SQL: select Id768_3_,Number2_768_3_,Published768_3_,Latest768_3_,Data768_3_,ContentI6_768_3_,Id767_0_,Data767_0_,ContentT3_767_0_,Id773_1_,SiteSalt773_1_,SiteName773_1_,SuperUser773_1_,PageTitl5_773_1_,HomePage773_1_,SiteCult7_773_1_,Resource8_773_1_,PageSize773_1_,SiteTim10_773_1_,Id769_2_,Name769_2_ from ( SELECT this_.Id as Id768_3_, this_.Number_ as Number2_768_3_, this_.Published as Published768_3_, this_.Latest as Latest768_3_, this_.Data as Data768_3_, this_.ContentItemRecord_id as ContentI6_768_3_, contentite1_.Id as Id767_0_, contentite1_.Data as Data767_0_, contentite1_.ContentType_id as ContentT3_767_0_, sitesettin4_.Id as Id773_1_, sitesettin4_.SiteSalt as SiteSalt773_1_, sitesettin4_.SiteName as SiteName773_1_, sitesettin4_.SuperUser as SuperUser773_1_, sitesettin4_.PageTitleSeparator as PageTitl5_773_1_, sitesettin4_.HomePage as HomePage773_1_, sitesettin4_.SiteCulture as SiteCult7_773_1_, sitesettin4_.ResourceDebugMode as Resource8_773_1_, sitesettin4_.PageSize as PageSize773_1_, sitesettin4_.SiteTimeZone as SiteTim10_773_1_, contenttyp5_.Id as Id769_2_, contenttyp5_.Name as Name769_2_ FROM Orchard_Framework_ContentItemV this_ inner join Orchard_Framework_ContentItemR contentite1_ on this_.ContentItemRecord_id=contentite1_.Id left outer join Settings_SiteSettingsPartRecor sitesettin4_ on contentite1_.Id=sitesettin4_.Id left outer join Orchard_Framework_ContentTypeR contenttyp5_ on contentite1_.ContentType_id=contenttyp5_.Id WHERE contentite1_.Id = :p0 and this_.Published = :p1 ) where rownum <=:p2] ---> System.Data.OracleClient.OracleException: ORA-00942: 表或视图不存在
+
+   在 System.Data.OracleClient.OracleConnection.CheckError(OciErrorHandle errorHandle, Int32 rc)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, Boolean needRowid, OciRowidDescriptor& rowidDescriptor, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.Execute(OciStatementHandle statementHandle, CommandBehavior behavior, ArrayList& resultParameterOrdinals)
+   在 System.Data.OracleClient.OracleCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OracleClient.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   在 NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session)
+   在 NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   在 NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Loader.Loader.ListIgnoreQueryCache(ISessionImplementor session, QueryParameters queryParameters)
+   在 NHibernate.Loader.Loader.List(ISessionImplementor session, QueryParameters queryParameters, ISet`1 querySpaces, IType[] resultTypes)
+   在 NHibernate.Loader.Criteria.CriteriaLoader.List(ISessionImplementor session)
+   在 NHibernate.Impl.SessionImpl.List(CriteriaImpl criteria, IList results)
+   在 NHibernate.Impl.CriteriaImpl.List(IList results)
+   在 NHibernate.Impl.CriteriaImpl.List[T]()
+   在 Orchard.ContentManagement.DefaultContentManager.GetManyImplementation(QueryHints hints, Action`2 predicate) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\ContentManagement\DefaultContentManager.cs:行号 334
+   在 Orchard.ContentManagement.DefaultContentManager.Get(Int32 id, VersionOptions options, QueryHints hints) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\ContentManagement\DefaultContentManager.cs:行号 140
+   在 Orchard.ContentManagement.ContentGetExtensions.Get[T](IContentManager manager, Int32 id, VersionOptions options, QueryHints hints) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\ContentManagement\ContentExtensions.cs:行号 160
+   在 Orchard.Core.Settings.Services.SiteService.GetSiteSettings() 位置 e:\Orchard\Orchard改Oracle\src\Orchard.Web\Core\Settings\Services\SiteService.cs:行号 46
+   在 Orchard.Settings.CurrentSiteWorkContext.Get[T](String name) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Settings\CurrentSiteWorkContext.cs:行号 13
+   在 Orchard.Environment.WorkContextImplementation.<>c__DisplayClass7`1.<FindResolverForState>b__2(IWorkContextStateProvider wcsp) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Environment\WorkContextImplementation.cs:行号 32
+   在 System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   在 System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   在 Orchard.Environment.WorkContextImplementation.FindResolverForState[T](String name) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Environment\WorkContextImplementation.cs:行号 32
+   在 System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   在 Orchard.Environment.WorkContextImplementation.GetState[T](String name) 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Environment\WorkContextImplementation.cs:行号 27
+   在 Orchard.WorkContext.get_CurrentSite() 位置 e:\Orchard\Orchard改Oracle\src\Orchard\WorkContext.cs:行号 52
+   在 Orchard.Warmup.Services.WarmupTask.Sweep()
+   在 Orchard.Tasks.BackgroundService.Sweep() 位置 e:\Orchard\Orchard改Oracle\src\Orchard\Tasks\BackgroundService.cs:行号 31
