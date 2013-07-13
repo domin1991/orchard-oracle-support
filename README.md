@@ -1,6 +1,6 @@
 修改Orchard1.6支持数据库 Oracle 11g.
 
-Orchard修改支持Oracle数据库，具体参考http://orchard.codeplex.com/discussions/401440，同时结合自己实际操作，现在已经能成功运行。
+Orchard修改支持Oracle数据库，具体参考[http://orchard.codeplex.com/discussions/401440](http://orchard.codeplex.com/discussions/401440)，同时结合自己实际操作，现在已经能成功运行。
 
 具体步骤如下：
 
