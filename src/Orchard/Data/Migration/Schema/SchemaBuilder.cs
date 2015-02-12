@@ -13,24 +13,34 @@ namespace Orchard.Data.Migration.Schema {
             _formatPrefix = formatPrefix ?? (s => s ?? String.Empty);
         }
 
-        //修改链接Oracle数据库-缩短数据库表名
-
+        public IDataMigrationInterpreter Interpreter {
+            get { return _interpreter; }
+        }
+      
+        public string FeaturePrefix {
+            get { return _featurePrefix; }
+        }
+      
+        public Func<string, string> FormatPrefix {
+            get { return _formatPrefix; }
+        }
+      
         public SchemaBuilder CreateTable(string name, Action<CreateTableCommand> table) {
-            var createTable = new CreateTableCommand(TableAliasGenerator.Generate(String.Concat(_formatPrefix(_featurePrefix), name)));
+            var createTable = new CreateTableCommand(String.Concat(_formatPrefix(_featurePrefix), name));
             table(createTable);
             Run(createTable);
             return this;
         }
 
         public SchemaBuilder AlterTable(string name, Action<AlterTableCommand> table) {
-            var alterTable = new AlterTableCommand(TableAliasGenerator.Generate(String.Concat(_formatPrefix(_featurePrefix), name)));
+            var alterTable = new AlterTableCommand(String.Concat(_formatPrefix(_featurePrefix), name));
             table(alterTable);
             Run(alterTable);
             return this;
         }
 
         public SchemaBuilder DropTable(string name) {
-            var deleteTable = new DropTableCommand(TableAliasGenerator.Generate(String.Concat(_formatPrefix(_featurePrefix), name)));
+            var deleteTable = new DropTableCommand(String.Concat(_formatPrefix(_featurePrefix), name));
             Run(deleteTable);
             return this;
         }

@@ -14,7 +14,7 @@ namespace Orchard.ContentManagement.DataMigrations {
             SchemaBuilder.CreateTable("ContentItemVersionRecord", 
                 table => table
                     .Column<int>("Id", column => column.PrimaryKey().Identity())
-                    .Column<int>("Number_")
+                    .Column<int>("VersionNumber")
                     .Column<bool>("Published")
                     .Column<bool>("Latest")
                     .Column<string>("Data", c => c.Unlimited())
@@ -34,6 +34,20 @@ namespace Orchard.ContentManagement.DataMigrations {
                 );
 
             return 1;
+        }
+
+        public int UpdateFrom1() {
+            SchemaBuilder.AlterTable("ContentItemRecord",
+               table => table
+                   .CreateIndex("IDX_ContentType_id", "ContentType_id")
+               );
+
+            SchemaBuilder.AlterTable("ContentItemVersionRecord",
+                table => table
+                    .CreateIndex("IDX_ContentItemRecord_id", "ContentItemRecord_id")
+                );
+
+            return 2;
         }
 
     }

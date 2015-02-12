@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Text.RegularExpressions; 
 using System.Diagnostics.CodeAnalysis;
-using System.Web;
 using Orchard.Core.Settings.Models;
 using Orchard.Localization;
-using System.Security.Principal;
 using System.Web.Mvc;
 using System.Web.Security;
 using Orchard.Logging;
@@ -17,7 +15,6 @@ using Orchard.ContentManagement;
 using Orchard.Users.Models;
 using Orchard.UI.Notify;
 using Orchard.Users.Events;
-using System.Collections.Generic;
 using Orchard.Utility.Extensions;
 
 namespace Orchard.Users.Controllers {
@@ -27,19 +24,19 @@ namespace Orchard.Users.Controllers {
         private readonly IMembershipService _membershipService;
         private readonly IUserService _userService;
         private readonly IOrchardServices _orchardServices;
-        private readonly IEnumerable<IUserEventHandler> _userEventHandlers;
+        private readonly IUserEventHandler _userEventHandler;
 
         public AccountController(
             IAuthenticationService authenticationService, 
             IMembershipService membershipService,
             IUserService userService, 
             IOrchardServices orchardServices,
-            IEnumerable<IUserEventHandler> userEventHandlers) {
+            IUserEventHandler userEventHandler) {
             _authenticationService = authenticationService;
             _membershipService = membershipService;
             _userService = userService;
             _orchardServices = orchardServices;
-            _userEventHandlers = userEventHandlers;
+            _userEventHandler = userEventHandler;
             Logger = NullLogger.Instance;
             T = NullLocalizer.Instance;
         }
@@ -62,9 +59,7 @@ namespace Orchard.Users.Controllers {
             //Suggestion: Could instead use the new AccessDenined IUserEventHandler method and let modules decide if they want to log this event?
             Logger.Information("Access denied to user #{0} '{1}' on {2}", currentUser.Id, currentUser.UserName, returnUrl);
 
-            foreach (var userEventHandler in _userEventHandlers) {
-                userEventHandler.AccessDenied(currentUser);
-            }
+            _userEventHandler.AccessDenied(currentUser);
 
             return View();
         }
@@ -80,6 +75,7 @@ namespace Orchard.Users.Controllers {
 
         [HttpPost]
         [AlwaysAccessible]
+        [ValidateInput(false)]
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings",
             Justification = "Needs to take same parameter type as Controller.Redirect()")]
         public ActionResult LogOn(string userNameOrEmail, string password, string returnUrl, bool rememberMe = false) {
@@ -90,9 +86,7 @@ namespace Orchard.Users.Controllers {
             }
 
             _authenticationService.SignIn(user, rememberMe);
-            foreach (var userEventHandler in _userEventHandlers) {
-                userEventHandler.LoggedIn(user);
-            }
+            _userEventHandler.LoggedIn(user);
 
             return this.RedirectLocal(returnUrl);
         }
@@ -101,9 +95,7 @@ namespace Orchard.Users.Controllers {
             var wasLoggedInUser = _authenticationService.GetAuthenticatedUser();
             _authenticationService.SignOut();
             if (wasLoggedInUser != null)
-                foreach (var userEventHandler in _userEventHandlers) {
-                    userEventHandler.LoggedOut(wasLoggedInUser);
-                }
+                _userEventHandler.LoggedOut(wasLoggedInUser);
             return this.RedirectLocal(returnUrl);
         }
 
@@ -129,6 +121,7 @@ namespace Orchard.Users.Controllers {
 
         [HttpPost]
         [AlwaysAccessible]
+        [ValidateInput(false)]
         public ActionResult Register(string userName, string email, string password, string confirmPassword) {
             // ensure users can register
             var registrationSettings = _orchardServices.WorkContext.CurrentSite.As<RegistrationSettingsPart>();
@@ -152,9 +145,7 @@ namespace Orchard.Users.Controllers {
 
                         _userService.SendChallengeEmail(user.As<UserPart>(), nonce => Url.MakeAbsolute(Url.Action("ChallengeEmail", "Account", new {Area = "Orchard.Users", nonce = nonce}), siteUrl));
 
-                        foreach (var userEventHandler in _userEventHandlers) {
-                            userEventHandler.SentChallengeEmail(user);
-                        }
+                        _userEventHandler.SentChallengeEmail(user);
                         return RedirectToAction("ChallengeEmailSent");
                     }
 
@@ -195,7 +186,7 @@ namespace Orchard.Users.Controllers {
             }
 
             if(String.IsNullOrWhiteSpace(username)){
-                _orchardServices.Notifier.Error(T("Invalid username or E-mail"));
+                ModelState.AddModelError("userNameOrEmail", T("Invalid username or E-mail."));
                 return View();
             }
 
@@ -236,9 +227,7 @@ namespace Orchard.Users.Controllers {
 
                 if ( validated != null ) {
                     _membershipService.SetPassword(validated, newPassword);
-                    foreach (var userEventHandler in _userEventHandlers) {
-                        userEventHandler.ChangedPassword(validated);
-                    }
+                    _userEventHandler.ChangedPassword(validated);
                     return RedirectToAction("ChangePasswordSuccess");
                 }
                 
@@ -262,6 +251,7 @@ namespace Orchard.Users.Controllers {
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult LostPassword(string nonce, string newPassword, string confirmPassword) {
             IUser user;
             if ( (user = _userService.ValidateLostPassword(nonce)) == null ) {
@@ -284,9 +274,7 @@ namespace Orchard.Users.Controllers {
 
             _membershipService.SetPassword(user, newPassword);
 
-            foreach (var userEventHandler in _userEventHandlers) {
-                userEventHandler.ChangedPassword(user);
-            }
+            _userEventHandler.ChangedPassword(user);
 
             return RedirectToAction("ChangePasswordSuccess");
         }
@@ -315,9 +303,7 @@ namespace Orchard.Users.Controllers {
             var user = _userService.ValidateChallenge(nonce);
 
             if ( user != null ) {
-                foreach (var userEventHandler in _userEventHandlers) {
-                    userEventHandler.ConfirmedEmail(user);
-                }
+                _userEventHandler.ConfirmedEmail(user);
 
                 return RedirectToAction("ChallengeEmailSuccess");
             }

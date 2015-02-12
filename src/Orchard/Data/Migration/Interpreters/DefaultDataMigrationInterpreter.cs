@@ -4,7 +4,6 @@ using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using NHibernate;
 using NHibernate.Dialect;
 using NHibernate.SqlTypes;
 using Orchard.ContentManagement.Records;
@@ -53,26 +52,21 @@ namespace Orchard.Data.Migration.Interpreters {
         }
 
         public override void Visit(CreateTableCommand command) {
-            if (ExecuteCustomInterpreter(command))
-            {
+
+            if (ExecuteCustomInterpreter(command)) {
                 return;
             }
 
             var builder = new StringBuilder();
 
-            //使用自治事务解决oracle创建数据库问题
-            builder
-                .Append("DECLARE pragma autonomous_transaction; BEGIN EXECUTE immediate '")
-                .Append(_dialect.CreateMultisetTableString)
+            builder.Append(_dialect.CreateMultisetTableString)
                 .Append(' ')
                 .Append(_dialect.QuoteForTableName(PrefixTableName(command.Name)))
                 .Append(" (");
 
             var appendComma = false;
-            foreach (var createColumn in command.TableCommands.OfType<CreateColumnCommand>())
-            {
-                if (appendComma)
-                {
+            foreach (var createColumn in command.TableCommands.OfType<CreateColumnCommand>()) {
+                if (appendComma) {
                     builder.Append(", ");
                 }
                 appendComma = true;
@@ -80,23 +74,19 @@ namespace Orchard.Data.Migration.Interpreters {
                 Visit(builder, createColumn);
             }
 
-            var primaryKeys = command.TableCommands.OfType<CreateColumnCommand>().Where(ccc => ccc.IsPrimaryKey).Select(ccc => ccc.ColumnName);
-            if (primaryKeys.Any())
-            {
-                if (appendComma)
-                {
+            var primaryKeys = command.TableCommands.OfType<CreateColumnCommand>().Where(ccc => ccc.IsPrimaryKey).Select(ccc => ccc.ColumnName).ToArray();
+            if (primaryKeys.Any()) {
+                if (appendComma) {
                     builder.Append(", ");
                 }
 
-                //标识符添加引号
                 builder.Append(_dialect.PrimaryKeyString)
                     .Append(" ( ")
-                    .Append(String.Join(", ", primaryKeys.Select(key => "\"" + key + "\"").ToArray()))
+                    .Append(String.Join(", ", primaryKeys.ToArray()))
                     .Append(" )");
             }
 
             builder.Append(" )");
-            builder.Append("'; END;");
             _sqlStatements.Add(builder.ToString());
 
             RunPendingStatements();
@@ -200,7 +190,7 @@ namespace Orchard.Data.Migration.Interpreters {
 
             // type
             if (command.DbType != DbType.Object) {
-                builder.Append(GetTypeName(command.DbType, command.Length, command.Precision, command.Scale));
+                builder.Append(GetTypeName(_dialect, command.DbType, command.Length, command.Precision, command.Scale));
             }
             else {
                 if(command.Length > 0 || command.Precision > 0 || command.Scale > 0) {
@@ -287,31 +277,12 @@ namespace Orchard.Data.Migration.Interpreters {
             RunPendingStatements();
         }
 
-        private string GetTypeName(DbType dbType, int? length, byte precision, byte scale) {
-
-            // NHibernate has a bug in MsSqlCeDialect, as it's declaring the decimal type as this:
-            // NUMERIC(19, $1), where $1 is the Length parameter, and it's wrong. It should be 
-            // NUMERIC(19, $s) in order to use the Scale parameter, as it's done for SQL Server dialects
-            // https://nhibernate.jira.com/browse/NH-2979
-            if (_dialect is NHibernate.Dialect.MsSqlCeDialect
-                && dbType == DbType.Decimal
-                && scale != 0) {
-                return _dialect.GetTypeName(new SqlType(dbType), scale, precision, scale);
-            }
-
-            string result = precision > 0
-                       ? _dialect.GetTypeName(new SqlType(dbType, precision, scale))
+        public static string GetTypeName(Dialect dialect, DbType dbType, int? length, byte precision, byte scale) {
+            return precision > 0
+                       ? dialect.GetTypeName(new SqlType(dbType, precision, scale))
                        : length.HasValue
-                             ? _dialect.GetTypeName(new SqlType(dbType, length.Value))
-                             : _dialect.GetTypeName(new SqlType(dbType));
-
-            //修改“NVARCHAR2”数据类型为“VARCHAR2”
-            if (_dialect is NHibernate.Dialect.Oracle9iDialect)
-            {
-                result = result.Replace("NVARCHAR2", "VARCHAR2");
-            }
-
-            return result;
+                             ? dialect.GetTypeName(new SqlType(dbType, length.Value))
+                             : dialect.GetTypeName(new SqlType(dbType));
         }
 
         private void Visit(StringBuilder builder, CreateColumnCommand command) {
@@ -323,7 +294,7 @@ namespace Orchard.Data.Migration.Interpreters {
             builder.Append(_dialect.QuoteForColumnName(command.ColumnName)).Append(Space);
 
             if (!command.IsIdentity || _dialect.HasDataTypeInIdentityColumn) {
-                builder.Append(GetTypeName(command.DbType, command.Length, command.Precision, command.Scale));
+                builder.Append(GetTypeName(_dialect, command.DbType, command.Length, command.Precision, command.Scale));
             }
 
             // append identity if handled
@@ -354,16 +325,17 @@ namespace Orchard.Data.Migration.Interpreters {
         private void RunPendingStatements() {
 
             var session = _sessionLocator.For(typeof(ContentItemRecord));
-            var connection = session.Connection;
 
             try {
                 foreach (var sqlStatement in _sqlStatements) {
                     Logger.Debug(sqlStatement);
-                    using (var command = connection.CreateCommand()) {
+
+                    using (var command = session.Connection.CreateCommand()) {
                         command.CommandText = sqlStatement;
+                        session.Transaction.Enlist(command);
                         command.ExecuteNonQuery();
                     }
-
+                 
                     _reportsCoordinator.Information("Data Migration", String.Format("Executing SQL Query: {0}", sqlStatement));
                 }
             }
@@ -387,7 +359,7 @@ namespace Orchard.Data.Migration.Interpreters {
             return false;
         }
 
-        private static string ConvertToSqlValue(object value) {
+        public static string ConvertToSqlValue(object value) {
             if ( value == null ) {
                 return "null";
             }
@@ -398,9 +370,8 @@ namespace Orchard.Data.Migration.Interpreters {
                 case TypeCode.Object:
                 case TypeCode.DBNull:
                 case TypeCode.String:
-                //修改针对添加自治事务后，含有default值时单双引号混淆
                 case TypeCode.Char:
-                    return String.Concat("''", Convert.ToString(value).Replace("'", "''"), "''");
+                    return String.Concat("'", Convert.ToString(value).Replace("'", "''"), "'");
                 case TypeCode.Boolean:
                     return (bool) value ? "1" : "0";
                 case TypeCode.SByte:

@@ -24,6 +24,7 @@ using Orchard.Reports.Services;
 using Orchard.Security;
 using Orchard.Settings;
 using Orchard.Utility.Extensions;
+using Orchard.Data.Providers;
 
 namespace Orchard.Setup.Services {
     public class SetupService : ISetupService {
@@ -75,7 +76,7 @@ namespace Orchard.Setup.Services {
                     // Core
                     "Common", "Containers", "Contents", "Dashboard", "Feeds", "Navigation", "Reports", "Scheduling", "Settings", "Shapes", "Title",
                     // Modules
-                    "Orchard.Pages", "Orchard.Themes", "Orchard.Users", "Orchard.Roles", "Orchard.Modules", 
+                    "Orchard.Pages", "Orchard.ContentPicker", "Orchard.Themes", "Orchard.Users", "Orchard.Roles", "Orchard.Modules", 
                     "PackagingServices", "Orchard.Packaging", "Gallery", "Orchard.Recipes"
                 };
 
@@ -116,11 +117,12 @@ namespace Orchard.Setup.Services {
                     var schemaBuilder = new SchemaBuilder(environment.Resolve<IDataMigrationInterpreter>());
                     try {
                         var tablePrefix = String.IsNullOrEmpty(shellSettings.DataTablePrefix) ? "" : shellSettings.DataTablePrefix + "_";
-
-
-                        //修改链接Oracle数据库-缩短数据库表名
-                        string tableNameShort = TableAliasGenerator.Generate(tablePrefix + "Settings_ShellDescriptorRecord");
-                        schemaBuilder.ExecuteSql("SELECT * FROM " + tableNameShort);
+                        string tableName = tablePrefix + "Settings_ShellDescriptorRecord";
+                        if (context.DatabaseProvider == OracleDataServicesProvider.ProviderName)
+                        {
+                            tableName = OracleDataServicesProvider.GetAlias(tableName);
+                        }
+                        schemaBuilder.ExecuteSql("SELECT * FROM " + tableName);
                     }
                     catch {
                         var reportsCoordinator = environment.Resolve<IReportsCoordinator>();
@@ -159,7 +161,7 @@ namespace Orchard.Setup.Services {
             // components will exist entirely in isolation - no crossover between the safemode container currently in effect
 
             // must mark state as Running - otherwise standalone enviro is created "for setup"
-            shellSettings.State = new TenantState("Running");
+            shellSettings.State = TenantState.Running;
             using (var environment = _orchardHost.CreateStandaloneEnvironment(shellSettings)) {
                 try {
                     executionId = CreateTenantData(context, environment);

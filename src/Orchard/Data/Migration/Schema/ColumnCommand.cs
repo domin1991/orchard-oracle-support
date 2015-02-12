@@ -2,15 +2,7 @@
 
 namespace Orchard.Data.Migration.Schema {
     public class ColumnCommand : TableCommand {
-        //修改列名大写
-        private string columnName;
-        public string ColumnName
-        {
-            get { return columnName; }
-            set { columnName = value.ToUpper(); }
-        }
-
-        //public string ColumnName { get; set; }
+        public string ColumnName { get; set; }
 
         public ColumnCommand(string tableName, string name)
             : base(tableName) {

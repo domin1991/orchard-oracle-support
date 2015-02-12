@@ -13,6 +13,10 @@ namespace Orchard.Web {
         private static Starter<IOrchardHost> _starter;
 
         public MvcApplication() {
+            // add application path to path variable for current process to be able to use DB drivers stored here (eg. Oracle)
+            System.Environment.SetEnvironmentVariable("path",
+                System.Environment.GetEnvironmentVariable("path") + ";" +
+                System.AppDomain.CurrentDomain.RelativeSearchPath);
         }
 
         public static void RegisterRoutes(RouteCollection routes) {
