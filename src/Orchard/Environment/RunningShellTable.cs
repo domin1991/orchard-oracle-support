@@ -101,11 +101,27 @@ namespace Orchard.Environment {
                 // will not be mapped to routes coming from orchard
                 _fallback = null;
             }
+
+            _shellsByHostAndPrefix.Clear();
         }
 
         public ShellSettings Match(HttpContextBase httpContext) {
             // use Host header to prevent proxy alteration of the orignal request
-            return Match(httpContext.Request.Headers["Host"] ?? string.Empty, httpContext.Request.AppRelativeCurrentExecutionFilePath);
+            try {
+                var httpRequest = httpContext.Request;
+                if (httpRequest == null) {
+                    return null;
+                }
+
+                var host = httpRequest.Headers["Host"];
+                var appRelativeCurrentExecutionFilePath = httpRequest.AppRelativeCurrentExecutionFilePath;
+
+                return Match(host ?? string.Empty, appRelativeCurrentExecutionFilePath);
+            }
+            catch(HttpException) {
+                // can happen on cloud service for an unknown reason
+                return null;
+            }
         }
 
         public ShellSettings Match(string host, string appRelativePath) {

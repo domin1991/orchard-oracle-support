@@ -39,7 +39,7 @@ namespace Orchard.Alias.Implementation.Map {
                 throw new ArgumentNullException();
             }
 
-            _aliases[info.Path] = info.RouteValues;
+            _aliases[info.Path ?? ""] = info.RouteValues;
             ExpandTree(_root, info.Path, info.RouteValues);
         }
 

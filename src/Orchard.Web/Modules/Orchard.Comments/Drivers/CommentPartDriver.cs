@@ -106,9 +106,13 @@ namespace Orchard.Comments.Drivers {
             var currentUser = workContext.CurrentUser;
             part.UserName = (currentUser != null ? currentUser.UserName : null);
 
-            if (currentUser != null) part.Author = currentUser.UserName;
+            if (currentUser != null) 
+                part.Author = currentUser.UserName;
+            else if (string.IsNullOrWhiteSpace(part.Author)) {
+                updater.AddModelError("Comments.Author", T("Name is mandatory"));
+            }
 
-            var moderateComments = workContext.CurrentSite.As<CommentSettingsPart>().Record.ModerateComments;
+            var moderateComments = workContext.CurrentSite.As<CommentSettingsPart>().ModerateComments;
             part.Status = moderateComments ? CommentStatus.Pending : CommentStatus.Approved;
 
             var commentedOn = _contentManager.Get<ICommonPart>(part.CommentedOn);
