@@ -125,6 +125,7 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Net.Http">
       <Private>True</Private>
     </Reference>
@@ -193,8 +194,10 @@
     <Compile Include="ContentManagement\Utilities\ComputedField.cs" />
     <Compile Include="Data\AbstractSessionInterceptor.cs" />
     <Compile Include="Data\Bags\SArray.cs" />
+    <Compile Include="Data\Conventions\ClobConvention.cs" />
     <Compile Include="Data\Conventions\ColumnNameConvention.cs" />
     <Compile Include="Data\Conventions\CustomForeignKeyConvention.cs" />
+    <Compile Include="Data\Conventions\CustomOracleDriver.cs" />
     <Compile Include="Data\FetchRequest.cs" />
     <Compile Include="Data\Migration\Conventions\ICommandNameConvention.cs" />
     <Compile Include="Data\Migration\Conventions\OracleCommandNameConvention.cs" />
