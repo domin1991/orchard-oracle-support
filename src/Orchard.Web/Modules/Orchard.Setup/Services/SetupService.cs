@@ -24,6 +24,7 @@ using Orchard.Reports.Services;
 using Orchard.Security;
 using Orchard.Settings;
 using Orchard.Utility.Extensions;
+using Orchard.Data.Providers;
 
 namespace Orchard.Setup.Services {
     public class SetupService : ISetupService {
@@ -116,7 +117,12 @@ namespace Orchard.Setup.Services {
                     var schemaBuilder = new SchemaBuilder(environment.Resolve<IDataMigrationInterpreter>());
                     try {
                         var tablePrefix = String.IsNullOrEmpty(shellSettings.DataTablePrefix) ? "" : shellSettings.DataTablePrefix + "_";
-                        schemaBuilder.ExecuteSql("SELECT * FROM " + tablePrefix + "Settings_ShellDescriptorRecord");
+                        string tableName = tablePrefix + "Settings_ShellDescriptorRecord";
+                        if (context.DatabaseProvider == OracleDataServicesProvider.ProviderName)
+                        {
+                            tableName = OracleDataServicesProvider.GetAlias(tableName);
+                        }
+                        schemaBuilder.ExecuteSql("SELECT * FROM " + tableName);
                     }
                     catch {
                         var reportsCoordinator = environment.Resolve<IReportsCoordinator>();

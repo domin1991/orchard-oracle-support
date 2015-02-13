@@ -227,7 +227,7 @@ namespace Orchard.Workflows.Controllers {
                 activity.ClientId = x.Name + "_" + x.Id;
                 activity.Left = x.X;
                 activity.Top = x.Y;
-                activity.Start = x.Start;
+                activity.Start = x.StartState;
                 activity.State = FormParametersHelper.FromJsonString(x.State);
 
                 return activity;
@@ -273,7 +273,7 @@ namespace Orchard.Workflows.Controllers {
                     Name = activity.Name,
                     X = activity.Left,
                     Y = activity.Top,
-                    Start = activity.Start,
+                    StartState = activity.Start,
                     State = FormParametersHelper.ToJsonString(activity.State),
                     WorkflowDefinitionRecord = workflowDefinitionRecord
                 });

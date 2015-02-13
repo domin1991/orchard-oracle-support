@@ -9,7 +9,7 @@ namespace Orchard.Data.Migration.Schema {
             WithName(name);
         }
 
-        public string Name { get; private set; }
+        public string Name { get; set; }
         public List<TableCommand> TableCommands { get; private set; }
 
         public SchemaCommandType Type { get; [UsedImplicitly]private set; }

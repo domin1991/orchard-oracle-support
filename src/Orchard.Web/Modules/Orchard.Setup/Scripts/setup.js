@@ -20,5 +20,17 @@
             $("#recipedescription").text(description); // make the contents of <div id="recipe-description"></div> be the escaped description string
         });
         $(".data").find('input[name=DatabaseProvider]:checked').click();
+
+        if ($(".data").find('input[name=DatabaseProvider]:checked').val() == 'Oracle') {
+            $("#DatabaseTablePrefix").val('').prop('disabled', true);
+        }
+        $(".data").find('input[name=DatabaseProvider]').change(function () {
+            if ($(this).val() == 'Oracle') {
+                $("#DatabaseTablePrefix").val('').prop('disabled', true);
+            }
+            else {
+                $("#DatabaseTablePrefix").prop('disabled', false);
+            }
+        });
     });
 })(jQuery);
