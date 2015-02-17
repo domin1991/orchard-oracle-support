@@ -24,6 +24,7 @@ using Orchard.Reports.Services;
 using Orchard.Security;
 using Orchard.Settings;
 using Orchard.Utility.Extensions;
+using Orchard.Data.Providers;
 
 namespace Orchard.Setup.Services {
     public class SetupService : ISetupService {
@@ -43,7 +44,8 @@ namespace Orchard.Setup.Services {
             IShellContainerFactory shellContainerFactory,
             ICompositionStrategy compositionStrategy,
             IProcessingEngine processingEngine,
-            IRecipeHarvester recipeHarvester) {
+            IRecipeHarvester recipeHarvester)
+        {
             _shellSettings = shellSettings;
             _orchardHost = orchardHost;
             _shellSettingsManager = shellSettingsManager;
@@ -116,7 +118,12 @@ namespace Orchard.Setup.Services {
                     var schemaBuilder = new SchemaBuilder(environment.Resolve<IDataMigrationInterpreter>());
                     try {
                         var tablePrefix = String.IsNullOrEmpty(shellSettings.DataTablePrefix) ? "" : shellSettings.DataTablePrefix + "_";
-                        schemaBuilder.ExecuteSql("SELECT * FROM " + tablePrefix + "Settings_ShellDescriptorRecord");
+                        string tableName = tablePrefix + "Settings_ShellDescriptorRecord";
+                        if (shellSettings.DataProvider == "Oracle")
+                        {
+                            tableName = OracleNameService.Normalize(tableName);
+                        }
+                        schemaBuilder.ExecuteSql("SELECT * FROM " + tableName);
                     }
                     catch {
                         var reportsCoordinator = environment.Resolve<IReportsCoordinator>();

@@ -8,6 +8,6 @@
             IndexName = indexName;
         }
 
-        public string[] ColumnNames { get; private set; }
+        public string[] ColumnNames { get; set; }
     }
 }

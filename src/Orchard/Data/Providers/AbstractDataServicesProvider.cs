@@ -19,6 +19,7 @@ using Orchard.Data.Conventions;
 using Orchard.Environment.ShellBuilders.Models;
 using Orchard.Logging;
 using Configuration = NHibernate.Cfg.Configuration;
+using Orchard.Environment.Configuration;
 
 namespace Orchard.Data.Providers {
     [Serializable]
@@ -35,6 +36,7 @@ namespace Orchard.Data.Providers {
         public Configuration BuildConfiguration(SessionFactoryParameters parameters) {
             var database = GetPersistenceConfigurer(parameters.CreateDatabase);
             var persistenceModel = CreatePersistenceModel(parameters.RecordDescriptors.ToList());
+            AdjustPersistantModel(persistenceModel);
 
             var config = Fluently.Configure();
 
@@ -79,6 +81,8 @@ namespace Orchard.Data.Providers {
         protected virtual void AlterConfiguration(Configuration config) {
             
         }
+
+        protected virtual void AdjustPersistantModel(AutoPersistenceModel persistanceModel) { }
 
         public static AutoPersistenceModel CreatePersistenceModel(ICollection<RecordBlueprint> recordDescriptors) {
             if(recordDescriptors == null) {

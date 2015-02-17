@@ -42,6 +42,10 @@ if (!Model.DatabaseIsPreconfigured) {
     <div>
         @Html.RadioButtonFor(svm => svm.DatabaseProvider, Orchard.Setup.Controllers.SetupDatabaseType.MySql.ToString(), new { id = "mysql" })
         <label for="mysql" class="forcheckbox">@T("Use an existing MySql database")</label>
+    </div>    
+    <div> 
+        @Html.RadioButtonFor(svm => svm.DatabaseProvider, Orchard.Setup.Controllers.SetupDatabaseType.Oracle.ToString(), new { id = "oracle" }) 
+        <label for="oracle" class="forcheckbox">@T("Use an existing Oracle database")</label> 
     </div>
     <div data-controllerid="builtin" data-defaultstate="hidden">
         <label for="DatabaseConnectionString">@T("Connection string")</label>
@@ -53,6 +57,10 @@ if (!Model.DatabaseIsPreconfigured) {
 
         <span data-controllerid="mysql" class="hint databaseTypeHint">
             @T("Data Source=serverName;Database=dbName;User Id=userName;Password=password")
+        </span>
+        
+        <span data-controllerid="oracle" class="hint databaseTypeHint">
+            @T("Data Source=databaseServer;Persist Security Info=True;User Id=userName;Password=password")
         </span>
 
         <br /><br />
