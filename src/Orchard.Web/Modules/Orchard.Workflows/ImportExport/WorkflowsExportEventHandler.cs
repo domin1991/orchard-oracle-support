@@ -44,7 +44,7 @@ namespace Orchard.Workflows.ImportExport {
                         new XElement("Activity",
                             new XAttribute("Id", activity.Id),
                             new XAttribute("Name", activity.Name),
-                            new XAttribute("Start", activity.StartState),
+                            new XAttribute("Start", activity.Start),
                             new XAttribute("X", activity.X),
                             new XAttribute("Y", activity.Y),
                             new XElement("State", activity.State)))),

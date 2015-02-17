@@ -41,7 +41,7 @@ namespace Orchard.Workflows.ImportExport {
                     var localId = Int32.Parse(activityElement.Attribute("Id").Value);
                     var activity = new ActivityRecord {
                         Name = activityElement.Attribute("Name").Value,
-                        StartState = Boolean.Parse(activityElement.Attribute("Start").Value),
+                        Start = Boolean.Parse(activityElement.Attribute("Start").Value),
                         X = Int32.Parse(activityElement.Attribute("X").Value),
                         Y = Int32.Parse(activityElement.Attribute("Y").Value),
                         State = activityElement.Element("State").Value

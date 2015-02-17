@@ -176,12 +176,12 @@
     <Compile Include="ContentManagement\Utilities\ComputedField.cs" />
     <Compile Include="Data\AbstractSessionInterceptor.cs" />
     <Compile Include="Data\Bags\SArray.cs" />
-    <Compile Include="Data\Conventions\ClobConvention.cs" />
-    <Compile Include="Data\Conventions\ColumnNameConvention.cs" />
-    <Compile Include="Data\Conventions\CustomForeignKeyConvention.cs" />
-    <Compile Include="Data\Conventions\CustomOracleDriver.cs" />
+    <Compile Include="Data\OracleNameCutter.cs" />
+    <Compile Include="Data\Conventions\OracleClobConvention.cs" />
+    <Compile Include="Data\Conventions\OracleColumnNameConvention.cs" />
+    <Compile Include="Data\Conventions\OracleCustomForeignKeyConvention.cs" />
+    <Compile Include="Data\Conventions\OracleTableNameConvention.cs" />
     <Compile Include="Data\FetchRequest.cs" />
-    <Compile Include="Data\Migration\Conventions\ICommandNameConvention.cs" />
     <Compile Include="Data\Migration\Conventions\OracleCommandNameConvention.cs" />
     <Compile Include="Data\Migration\Interpreters\DefaultDataMigrationInterpreter.cs">
       <SubType>Code</SubType>

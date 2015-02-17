@@ -183,9 +183,9 @@ namespace Orchard.ContentManagement {
 
                 if (options.VersionNumber != 0) {
                     versionRecord = contentItemVersionRecords.FirstOrDefault(
-                        x => x.VersionNumber == options.VersionNumber) ??
+                        x => x.Number == options.VersionNumber) ??
                            _contentItemVersionRepository.Get(
-                               x => x.ContentItemRecord.Id == id && x.VersionNumber == options.VersionNumber);
+                               x => x.ContentItemRecord.Id == id && x.Number == options.VersionNumber);
                 }
                 else {
                     versionRecord = contentItemVersionRecords.FirstOrDefault();
@@ -258,9 +258,9 @@ namespace Orchard.ContentManagement {
             }
             if (options.VersionNumber != 0) {
                 return itemRecord.Versions.FirstOrDefault(
-                    x => x.VersionNumber == options.VersionNumber) ??
+                    x => x.Number == options.VersionNumber) ??
                        _contentItemVersionRepository.Get(
-                           x => x.ContentItemRecord == itemRecord && x.VersionNumber == options.VersionNumber);
+                           x => x.ContentItemRecord == itemRecord && x.Number == options.VersionNumber);
             }
             return null;
         }
@@ -268,7 +268,7 @@ namespace Orchard.ContentManagement {
         public virtual IEnumerable<ContentItem> GetAllVersions(int id) {
             return _contentItemVersionRepository
                 .Fetch(x => x.ContentItemRecord.Id == id)
-                .OrderBy(x => x.VersionNumber)
+                .OrderBy(x => x.Number)
                 .Select(x => Get(x.Id, VersionOptions.VersionRecord(x.Id)));
         }
 
@@ -451,10 +451,10 @@ namespace Orchard.ContentManagement {
 
             if (latestVersion != null) {
                 latestVersion.Latest = false;
-                buildingItemVersionRecord.VersionNumber = latestVersion.VersionNumber + 1;
+                buildingItemVersionRecord.Number = latestVersion.Number + 1;
             }
             else {
-                buildingItemVersionRecord.VersionNumber = contentItemRecord.Versions.Max(x => x.VersionNumber) + 1;
+                buildingItemVersionRecord.Number = contentItemRecord.Versions.Max(x => x.Number) + 1;
             }
 
             contentItemRecord.Versions.Add(buildingItemVersionRecord);
@@ -489,7 +489,7 @@ namespace Orchard.ContentManagement {
                     ContentItemRecord = new ContentItemRecord {
                         
                     },
-                    VersionNumber = 1,
+                    Number = 1,
                     Latest = true,
                     Published = true
                 };
@@ -500,7 +500,7 @@ namespace Orchard.ContentManagement {
 
             // version may be specified
             if (options.VersionNumber != 0) {
-                contentItem.VersionRecord.VersionNumber = options.VersionNumber;
+                contentItem.VersionRecord.Number = options.VersionNumber;
             }
 
             // draft flag on create is required for explicitly-published content items
@@ -696,7 +696,7 @@ namespace Orchard.ContentManagement {
                     ContentItemRecord = new ContentItemRecord {
                         ContentType = AcquireContentTypeRecord(item.ContentType)
                     },
-                    VersionNumber = 1,
+                    Number = 1,
                     Latest = true,
                     Published = true
                 };                

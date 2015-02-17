@@ -7,6 +7,11 @@ using System.Text;
 
 namespace Orchard.Data.Migration.Convention
 {
+    public interface ICommandNameConvention : IDependency
+    {
+        SchemaCommand ChangeCommand(SchemaCommand command);
+    }
+
     public class OracleCommandNameConvention : ICommandNameConvention
     {
         public Schema.SchemaCommand ChangeCommand(Schema.SchemaCommand command)
@@ -26,10 +31,10 @@ namespace Orchard.Data.Migration.Convention
                     Change((SqlStatementCommand)command);
                     break;
                 case SchemaCommandType.CreateForeignKey:
-                    Change((CreateForeignKeyCommand)command);                    
+                    Change((CreateForeignKeyCommand)command);
                     break;
                 case SchemaCommandType.DropForeignKey:
-                    Change((DropForeignKeyCommand)command);                    
+                    Change((DropForeignKeyCommand)command);
                     break;
             }
             return command;
@@ -37,67 +42,64 @@ namespace Orchard.Data.Migration.Convention
 
         private void Change(DropForeignKeyCommand command)
         {
-            command.SrcTable = OracleDataServicesProvider.GetAlias(command.SrcTable);
-            command.Name = OracleDataServicesProvider.GetAlias(command.Name);
+            command.SrcTable = OracleNameCutter.Cut(command.SrcTable);
+            command.Name = OracleNameCutter.Cut(command.Name);
         }
 
         private void Change(CreateForeignKeyCommand command)
         {
-            command.SrcTable = OracleDataServicesProvider.GetAlias(command.SrcTable);
-            command.Name = OracleDataServicesProvider.GetAlias(command.Name);
-            command.DestTable = OracleDataServicesProvider.GetAlias(command.SrcTable);
-                    
+            command.SrcTable = OracleNameCutter.Cut(command.SrcTable);
+            command.Name = OracleNameCutter.Cut(command.Name);
+            command.DestTable = OracleNameCutter.Cut(command.SrcTable);
         }
 
         private void Change(SqlStatementCommand command)
         {
-            //throw new NotImplementedException();
+
         }
 
         private void Change(DropTableCommand command)
         {
-            command.Name = OracleDataServicesProvider.GetAlias(command.Name);
+            command.Name = OracleNameCutter.Cut(command.Name);
         }
 
         private void Change(AlterTableCommand command)
         {
             foreach (var item in command.TableCommands.OfType<DropColumnCommand>())
             {
-                item.TableName = OracleDataServicesProvider.GetAlias(item.TableName);
-                item.ColumnName = OracleDataServicesProvider.GetAlias(item.ColumnName);
+                item.TableName = OracleNameCutter.Cut(item.TableName);
+                item.ColumnName = OracleNameCutter.Cut(item.ColumnName);
             }
             foreach (var item in command.TableCommands.OfType<AddColumnCommand>())
             {
-                item.TableName = OracleDataServicesProvider.GetAlias(item.TableName);
-                item.ColumnName = OracleDataServicesProvider.GetAlias(item.ColumnName);
+                item.TableName = OracleNameCutter.Cut(item.TableName);
+                item.ColumnName = OracleNameCutter.Cut(item.ColumnName);
             }
             foreach (var item in command.TableCommands.OfType<AlterColumnCommand>())
             {
-                item.TableName = OracleDataServicesProvider.GetAlias(item.TableName);
-                item.ColumnName = OracleDataServicesProvider.GetAlias(item.ColumnName);
+                item.TableName = OracleNameCutter.Cut(item.TableName);
+                item.ColumnName = OracleNameCutter.Cut(item.ColumnName);
             }
             foreach (var item in command.TableCommands.OfType<AddIndexCommand>())
             {
-                item.TableName = OracleDataServicesProvider.GetAlias(item.TableName);
-                item.IndexName = OracleDataServicesProvider.GetAlias(item.IndexName);
-                item.ColumnNames = item.ColumnNames.Select(x => OracleDataServicesProvider.GetAlias(x)).ToArray();
-                
+                item.TableName = OracleNameCutter.Cut(item.TableName);
+                item.IndexName = OracleNameCutter.Cut(item.IndexName);
+                item.ColumnNames = item.ColumnNames.Select(x => OracleNameCutter.Cut(x)).ToArray();
             }
             foreach (var item in command.TableCommands.OfType<DropIndexCommand>())
             {
-                item.TableName = OracleDataServicesProvider.GetAlias(item.TableName);
-                item.IndexName = OracleDataServicesProvider.GetAlias(item.IndexName);
+                item.TableName = OracleNameCutter.Cut(item.TableName);
+                item.IndexName = OracleNameCutter.Cut(item.IndexName);
             }
         }
 
         private void Change(CreateTableCommand command)
         {
-            command.Name = OracleDataServicesProvider.GetAlias(command.Name);
+            command.Name = OracleNameCutter.Cut(command.Name);
             foreach (var createColumn in command.TableCommands.OfType<CreateColumnCommand>())
             {
-                createColumn.ColumnName = OracleDataServicesProvider.GetAlias(createColumn.ColumnName);
+                createColumn.ColumnName = OracleNameCutter.Cut(createColumn.ColumnName);
             }
         }
-        
     }
 }

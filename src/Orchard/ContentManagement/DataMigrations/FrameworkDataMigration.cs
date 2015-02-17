@@ -14,7 +14,7 @@ namespace Orchard.ContentManagement.DataMigrations {
             SchemaBuilder.CreateTable("ContentItemVersionRecord", 
                 table => table
                     .Column<int>("Id", column => column.PrimaryKey().Identity())
-                    .Column<int>("VersionNumber")
+                    .Column<int>("Number")
                     .Column<bool>("Published")
                     .Column<bool>("Latest")
                     .Column<string>("Data", c => c.Unlimited())

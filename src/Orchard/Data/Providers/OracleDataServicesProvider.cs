@@ -5,6 +5,10 @@ using FluentNHibernate.Automapping;
 using System.Collections.Generic;
 using Orchard.Environment.ShellBuilders.Models;
 using Orchard.Data.Conventions;
+using NHibernate.Driver;
+using NHibernate.SqlTypes;
+using System.Data.OracleClient;
+using FluentNHibernate.Conventions;
 
 namespace Orchard.Data.Providers
 {
@@ -36,32 +40,42 @@ namespace Orchard.Data.Providers
             return persistence;
         }
 
-        public static string GetAlias(string name)
-        {
-            if (name.LastIndexOf('_') < 0)
-            {
-                return name.Length > 30 ? name.Substring(0, 30).ToUpper() : name.ToUpper();
-            }
-            var prefix = name.Substring(0, name.LastIndexOf('_'));
-            prefix = new string(prefix.ToCharArray().Where(c => String.Equals(c, char.ToUpper(c))).ToArray());
-            var result = string.Format("{0}{1}", prefix, name.Substring(name.LastIndexOf('_')));
-            result = result.Length > 30 ? result.Substring(0, 30).ToUpper() : result.ToUpper();
-            return result;
-        }
-
-        public static int GetColumnLength(int length)
-        {
-            return length > 2000 ? 2000 : length;
-        }
-
         protected override void AdjustPersistantModel(AutoPersistenceModel persistanceModel)
         {
             persistanceModel.Conventions.Setup(x =>
             {
-                x.Add(CustomForeignKeyConvention.Create());
-                x.Add(ColumnNameConvention.Create());
-                x.Add(ClobConvention.Create());
+                x.Add(OracleCustomForeignKeyConvention.Create());
+                x.Add(OracleColumnNameConvention.Create());
+                x.Add(OracleClobConvention.Create());
+                x.Add(OracleTableNameConvention.Create());
             });
+        }
+
+        public class CustomOracleDriver : OracleClientDriver
+        {
+            protected override void InitializeParameter(System.Data.IDbDataParameter dbParam, string name, SqlType sqlType)
+            {
+                base.InitializeParameter(dbParam, name, sqlType);
+
+                // System.Data.OracleClient.dll driver generates an ORA-01461 exception because 
+                // the driver mistakenly infers the column type of the string being saved, and 
+                // tries forcing the server to update a LONG value into a CLOB/NCLOB column type. 
+                // The reason for the incorrect behavior is even more obscure and only happens 
+                // when all the following conditions are met.
+                //   1.) IDbDataParameter.Value = (string whose length: 4000 > length > 2000 )
+                //   2.) IDbDataParameter.DbType = DbType.String
+                //   3.) DB Column is of type NCLOB/CLOB
+
+                // The above is the default behavior for NHibernate.OracleClientDriver
+                // So we use the built-in StringClobSqlType to tell the driver to use the NClob Oracle type
+                // This will work for both NCLOB/CLOBs without issues.
+                // Mapping file must be updated to use StringClob as the property type
+                // See: http://thebasilet.blogspot.be/2009/07/nhibernate-oracle-clobs.html
+                if ((sqlType is StringClobSqlType))
+                {
+                    ((OracleParameter)dbParam).OracleType = OracleType.NClob;
+                }
+            }
         }
     }
 }
