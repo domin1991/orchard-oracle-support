@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace Orchard.Data.Conventions
 {
-    public class OracleClobConvention : AttributePropertyConvention<StringLengthMaxAttribute>
+    public class ClobConvention : AttributePropertyConvention<StringLengthMaxAttribute>
     {
-        private OracleClobConvention() { }
+        private ClobConvention() { }
 
-        public static OracleClobConvention Create()
+        public static ClobConvention Create()
         {
-            return new OracleClobConvention();
+            return new ClobConvention();
         }
         protected override void Apply(StringLengthMaxAttribute attribute, IPropertyInstance instance)
         {

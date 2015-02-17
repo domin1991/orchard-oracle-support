@@ -175,6 +175,10 @@ namespace Orchard.Environment.ShellBuilders {
                 dataTablePrefix = settings.DataTablePrefix + "_";
 
             string tableName = dataTablePrefix + extensionName + '_' + type.Name;
+            if (settings.DataProvider == OracleDataServicesProvider.ProviderName)
+            {
+                tableName = OracleDataServicesProvider.GetAlias(tableName);
+            }
             return new RecordBlueprint {
                 Type = type,
                 Feature = feature,

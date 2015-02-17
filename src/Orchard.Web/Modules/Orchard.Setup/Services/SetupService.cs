@@ -44,8 +44,7 @@ namespace Orchard.Setup.Services {
             IShellContainerFactory shellContainerFactory,
             ICompositionStrategy compositionStrategy,
             IProcessingEngine processingEngine,
-            IRecipeHarvester recipeHarvester)
-        {
+            IRecipeHarvester recipeHarvester) {
             _shellSettings = shellSettings;
             _orchardHost = orchardHost;
             _shellSettingsManager = shellSettingsManager;
@@ -119,9 +118,9 @@ namespace Orchard.Setup.Services {
                     try {
                         var tablePrefix = String.IsNullOrEmpty(shellSettings.DataTablePrefix) ? "" : shellSettings.DataTablePrefix + "_";
                         string tableName = tablePrefix + "Settings_ShellDescriptorRecord";
-                        if (shellSettings.DataProvider == "Oracle")
+                        if (context.DatabaseProvider == OracleDataServicesProvider.ProviderName)
                         {
-                            tableName = OracleNameCutter.Cut(tableName);
+                            tableName = OracleDataServicesProvider.GetAlias(tableName);
                         }
                         schemaBuilder.ExecuteSql("SELECT * FROM " + tableName);
                     }

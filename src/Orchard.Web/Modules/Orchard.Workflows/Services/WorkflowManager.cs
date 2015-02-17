@@ -53,7 +53,7 @@ namespace Orchard.Workflows.Services {
             // it's important to return activities at this point and not workflows,
             // as a workflow definition could have multiple entry points with the same type of activity
             startedWorkflows.AddRange(_activityRepository.Table.Where(
-                x =>x.Name == name && x.Start && x.WorkflowDefinitionRecord.Enabled
+                x =>x.Name == name && x.StartState && x.WorkflowDefinitionRecord.Enabled
                 )
             );
 
@@ -62,7 +62,7 @@ namespace Orchard.Workflows.Services {
             // and any running workflow paused on this kind of activity for this content
             // it's important to return activities at this point as a workflow could be awaiting 
             // on several ones. When an activity is restarted, all the other ones of the same workflow are cancelled.
-            var awaitingQuery = _awaitingActivityRepository.Table.Where(x => x.ActivityRecord.Name == name && x.ActivityRecord.Start == false);
+            var awaitingQuery = _awaitingActivityRepository.Table.Where(x => x.ActivityRecord.Name == name && x.ActivityRecord.StartState == false);
             awaitingQuery = target == null || target.ContentItem == null
                     ? awaitingQuery.Where(x => x.WorkflowRecord.ContentItemRecord == null)
                     : awaitingQuery.Where(x => x.WorkflowRecord.ContentItemRecord == target.ContentItem.Record);

@@ -31,7 +31,7 @@ namespace Orchard.Workflows.Models {
         /// <summary>
         /// Whether the activity is a start state for a WorkflowDefinition.
         /// </summary>
-        public virtual bool Start { get; set; }
+        public virtual bool StartState { get; set; }
 
         /// <summary>
         /// The parent <see cref="WorkflowDefinitionRecord"/> 

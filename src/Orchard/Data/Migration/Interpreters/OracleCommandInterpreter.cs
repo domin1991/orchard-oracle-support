@@ -185,6 +185,65 @@ namespace Orchard.Data.Migration.Interpreters
             return new string[] { builder.ToString() };
         }
 
+        //public string[] CreateStatements(AlterColumnCommand command)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public string[] CreateStatements(CreateColumnCommand command)
+        //{
+        //    var builder = new StringBuilder();
+        //    // name
+        //    builder.Append(_dialect.QuoteForColumnName(command.ColumnName)).Append(Space);
+
+        //    if (!command.IsIdentity || _dialect.HasDataTypeInIdentityColumn)
+        //    {
+        //        builder.Append(GetTypeName(_dialect, command.DbType, command.Length, command.Precision, command.Scale, _shellSettings.DataProvider));
+        //    }
+
+        //    // append identity if handled
+        //    if (command.IsIdentity && _dialect.SupportsIdentityColumns)
+        //    {
+        //        builder.Append(Space).Append(_dialect.IdentityColumnString);
+        //    }
+
+        //    // [default value]
+        //    if (command.Default != null)
+        //    {
+        //        builder.Append(" default ").Append(ConvertToSqlValue(command.Default, _shellSettings.DataProvider)).Append(Space);
+        //    }
+
+        //    // nullable
+        //    builder.Append(command.IsNotNull
+        //                       ? " not null"
+        //                       : !command.IsPrimaryKey && !command.IsUnique
+        //                             ? _dialect.NullColumnString
+        //                             : string.Empty);
+
+        //    // append unique if handled, otherwise at the end of the satement
+        //    if (command.IsUnique && _dialect.SupportsUnique)
+        //    {
+        //        builder.Append(" unique");
+        //    }
+
+        //}
+
+        //public string[] CreateStatements(AddColumnCommand command)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public string[] CreateStatements(DropIndexCommand command)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public string[] CreateStatements(AddIndexCommand command)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+
         private void Visit(StringBuilder builder, CreateColumnCommand command)
         {
             // name
