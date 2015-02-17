@@ -129,10 +129,6 @@ namespace Orchard.Setup.Controllers {
                         providerName = "MySql";
                         break;
 
-                    case SetupDatabaseType.Oracle:
-                        providerName = "Oracle";
-                        break;
-
                     default:
                         throw new ApplicationException("Unknown database type: " + model.DatabaseProvider);
                 }

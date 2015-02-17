@@ -43,7 +43,7 @@ namespace Orchard.Workflows {
                 .Column<int>("X")
                 .Column<int>("Y")
 				.Column<string>("State", c => c.Unlimited())
-                .Column<bool>("StartState")
+                .Column<bool>("Start")
                 .Column<int>("WorkflowDefinitionRecord_id")
 			);
 

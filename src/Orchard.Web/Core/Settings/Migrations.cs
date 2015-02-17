@@ -1,24 +1,10 @@
 ﻿using Orchard.ContentManagement.MetaData;
 using Orchard.Data.Migration;
-using Orchard.Data.Providers;
-using Orchard.Environment.Configuration;
 
 namespace Orchard.Core.Settings {
     public class Migrations : DataMigrationImpl {
 
-        ShellSettings _shellSettings;
-        public Migrations(ShellSettings shellSetting)
-        {
-            _shellSettings = shellSetting;
-        }
-
         public int Create() {
-            if (_shellSettings.DataProvider == OracleDataServicesProvider.ProviderName)
-            {
-                try { SchemaBuilder.ExecuteSql("create sequence hibernate_sequence"); }
-                catch { }
-            }
-
             SchemaBuilder.CreateTable("ContentFieldDefinitionRecord", 
                 table => table
                     .Column<int>("Id", column => column.PrimaryKey().Identity())

@@ -107,7 +107,6 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Net.Http">
       <Private>True</Private>
     </Reference>
@@ -176,20 +175,9 @@
     <Compile Include="ContentManagement\Utilities\ComputedField.cs" />
     <Compile Include="Data\AbstractSessionInterceptor.cs" />
     <Compile Include="Data\Bags\SArray.cs" />
-    <Compile Include="Data\Conventions\ClobConvention.cs" />
-    <Compile Include="Data\Conventions\ColumnNameConvention.cs" />
-    <Compile Include="Data\Conventions\CustomForeignKeyConvention.cs" />
-    <Compile Include="Data\Conventions\CustomOracleDriver.cs" />
     <Compile Include="Data\FetchRequest.cs" />
-    <Compile Include="Data\Migration\Conventions\ICommandNameConvention.cs" />
-    <Compile Include="Data\Migration\Conventions\OracleCommandNameConvention.cs" />
-    <Compile Include="Data\Migration\Interpreters\DefaultDataMigrationInterpreter.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Data\Migration\Interpreters\MySqlCommandInterpreter.cs" />
-    <Compile Include="Data\Migration\Interpreters\OracleCommandInterpreter.cs" />
     <Compile Include="Data\Providers\MySqlStatementProvider.cs" />
-    <Compile Include="Data\Providers\OracleDataServicesProvider.cs" />
     <Compile Include="Data\Providers\SqlCeStatementProvider.cs" />
     <Compile Include="Data\Providers\ISqlStatementProvider.cs" />
     <Compile Include="Data\Providers\SqlServerStatementProvider.cs" />
@@ -640,6 +628,7 @@
     <Compile Include="Data\Migration\Generator\ISchemaCommandGenerator.cs" />
     <Compile Include="Data\Migration\Interpreters\AbstractDataMigrationInterpreter.cs" />
     <Compile Include="Data\Migration\Interpreters\ICommandInterpreter.cs" />
+    <Compile Include="Data\Migration\Interpreters\DefaultDataMigrationInterpreter.cs" />
     <Compile Include="Data\Migration\Interpreters\IDataMigrationInterpreter.cs" />
     <Compile Include="Data\Migration\Interpreters\SQLiteCommandInterpreter.cs" />
     <Compile Include="Data\Migration\Interpreters\StringCommandInterpreter.cs" />

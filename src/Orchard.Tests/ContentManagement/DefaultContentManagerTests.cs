@@ -312,7 +312,7 @@ namespace Orchard.Tests.ContentManagement {
             }
             contentItemRepository.Create(modelRecord);
 
-            contentItemVersionRepository.Create(new ContentItemVersionRecord { ContentItemRecord = modelRecord, Latest = true, Published = true, VersionNumber = 1 });
+            contentItemVersionRepository.Create(new ContentItemVersionRecord { ContentItemRecord = modelRecord, Latest = true, Published = true, Number = 1 });
 
             _session.Flush();
             _session.Clear();
@@ -325,7 +325,7 @@ namespace Orchard.Tests.ContentManagement {
             Assert.That(gamma1.ContentItem.Record, Is.Not.Null);
             Assert.That(gamma1.ContentItem.VersionRecord, Is.Not.Null);
             Assert.That(gamma1.ContentItem.Version, Is.EqualTo(1));
-            Assert.That(gamma1.ContentItem.VersionRecord.VersionNumber, Is.EqualTo(1));
+            Assert.That(gamma1.ContentItem.VersionRecord.Number, Is.EqualTo(1));
 
             _session.Flush();
             _session.Clear();
@@ -335,7 +335,7 @@ namespace Orchard.Tests.ContentManagement {
             Assert.That(gamma2.ContentItem.Record, Is.Not.Null);
             Assert.That(gamma2.ContentItem.VersionRecord, Is.Not.Null);
             Assert.That(gamma2.ContentItem.Version, Is.EqualTo(1));
-            Assert.That(gamma2.ContentItem.VersionRecord.VersionNumber, Is.EqualTo(1));
+            Assert.That(gamma2.ContentItem.VersionRecord.Number, Is.EqualTo(1));
 
             // asserts results are re-acquired from db
             Assert.That(gamma1, Is.Not.SameAs(gamma2));
@@ -442,7 +442,7 @@ namespace Orchard.Tests.ContentManagement {
                 Trace.WriteLine(string.Format("{0}/{1} #{2} published:{3} latest:{4}",
                     x.ContentItemRecord.Id,
                     x.Id,
-                    x.VersionNumber,
+                    x.Number,
                     x.Published,
                     x.Latest));
             }

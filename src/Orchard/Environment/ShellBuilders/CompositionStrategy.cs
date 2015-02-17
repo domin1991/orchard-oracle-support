@@ -13,7 +13,6 @@ using Orchard.Environment.Extensions;
 using Orchard.Environment.Extensions.Models;
 using Orchard.Environment.ShellBuilders.Models;
 using Orchard.Logging;
-using Orchard.Data.Providers;
 
 namespace Orchard.Environment.ShellBuilders {
     /// <summary>
@@ -174,15 +173,10 @@ namespace Orchard.Environment.ShellBuilders {
             if (!string.IsNullOrEmpty(settings.DataTablePrefix))
                 dataTablePrefix = settings.DataTablePrefix + "_";
 
-            string tableName = dataTablePrefix + extensionName + '_' + type.Name;
-            if (settings.DataProvider == OracleDataServicesProvider.ProviderName)
-            {
-                tableName = OracleDataServicesProvider.GetAlias(tableName);
-            }
             return new RecordBlueprint {
                 Type = type,
                 Feature = feature,
-                TableName = tableName,
+                TableName = dataTablePrefix + extensionName + '_' + type.Name,
             };
         }
     }
