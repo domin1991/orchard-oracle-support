@@ -1,11 +1,11 @@
 ﻿namespace Orchard.Data.Migration.Schema {
     public class CreateForeignKeyCommand : SchemaCommand {
 
-        public string[] DestColumns { get; private set; }
+        public string[] DestColumns { get; set; }
 
         public string DestTable { get; set; }
 
-        public string[] SrcColumns { get; private set; }
+        public string[] SrcColumns { get; set; }
 
         public string SrcTable { get; set; }
 

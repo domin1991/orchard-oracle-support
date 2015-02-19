@@ -236,7 +236,7 @@ namespace Orchard.Data.Migration.Interpreters
 
         public void Visit(StringBuilder builder, AlterColumnCommand command)
         {
-            builder.AppendFormat("alter table {0} alter column {1} ",
+            builder.AppendFormat("alter table {0} modify {1} ",
                  _dialect.QuoteForTableName(command.TableName),
                  _dialect.QuoteForColumnName(command.ColumnName));
 

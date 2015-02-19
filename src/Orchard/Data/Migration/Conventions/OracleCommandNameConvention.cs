@@ -66,8 +66,10 @@ namespace Orchard.Data.Migration.Convention
         private void Change(CreateForeignKeyCommand command)
         {
             command.SrcTable = OracleNameService.Normalize(PrefixName(command.SrcTable));
+            command.SrcColumns = command.SrcColumns.Select(n => OracleNameService.Normalize(n)).ToArray();
             command.Name = OracleNameService.Normalize(command.Name);
             command.DestTable = OracleNameService.Normalize(PrefixName(command.SrcTable));
+            command.DestColumns = command.DestColumns.Select(n => OracleNameService.Normalize(n)).ToArray();
         }
 
         private void Change(SqlStatementCommand command)
